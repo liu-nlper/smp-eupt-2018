@@ -10,6 +10,9 @@ class HelloWorld(object):
     This is an example class.
     """
 
+    def __init__(self, conf):
+        self.conf = conf
+
     @staticmethod
     def run():
         print('hello, world!')
