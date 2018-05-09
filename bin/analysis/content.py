@@ -5,7 +5,6 @@
 # @Email   : houjp1992@gmail.com
 
 import numpy as np
-from absl import logging
 from bin.analysis.analyzer import Analyzer
 
 
@@ -16,16 +15,17 @@ class ContentLen(Analyzer):
 
     def analyze_row(self, row):
         content = row['内容']
-        if len(content) == 0:
-            print(row['id'])
+        if len(content) < 20 or len(content) > 1e5:
+            print('id={}, 标签={}, len(content)={}'.format(row['id'], row['标签'], len(content)))
         return len(content)
 
     def aggregate(self, vecs):
         # max=101487, min=0, med=1096.0, ave=1872.12172434
-        logging.info('max={}, min={}, med={}, ave={}'.format(np.max(vecs),
-                                                             np.min(vecs),
-                                                             np.median(vecs),
-                                                             np.average(vecs)))
-        # len(content)=0:
-        #   * id=83445  机器作者
-        #   * id=118318 机器作者
+        print('max={}, min={}, med={}, ave={}'.format(np.max(vecs),
+                                                      np.min(vecs),
+                                                      np.median(vecs),
+                                                      np.average(vecs)))
+        # id = 3911, 标签 = 人类作者, len(content) = 101487
+        # id = 141703, 标签 = 人类作者, len(content) = 101487
+        # id = 83445, 标签 = 机器作者, len(content) = 0
+        # id = 118318, 标签 = 机器作者, len(content) = 0
