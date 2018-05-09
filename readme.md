@@ -2,8 +2,6 @@
 
 #	SMP EUPT 2018
 
-#### Author: Liang Pang, Jianpeng Hou
-
 ****
 
 ##	Categories
