@@ -44,4 +44,6 @@ python -m bin.run
 
 ##	<a name="analysis"> Analysis </a>
 
-![Content Length](imag/content-length.png)
+![Content Length](img/content-length.png)
+
+<img src="img/content-length.png" width="50%" />
