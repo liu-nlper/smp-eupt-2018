@@ -6,7 +6,6 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.mlab as mlab
 from bin.analysis.analyzer import Analyzer
 
 
@@ -18,6 +17,10 @@ class ContentLen(Analyzer):
     def analyze_row(self, row):
         content = row['内容']
         if len(content) < 20 or len(content) > 1e5:
+            # id = 3911, 标签 = 人类作者, len(content) = 101487
+            # id = 141703, 标签 = 人类作者, len(content) = 101487
+            # id = 83445, 标签 = 机器作者, len(content) = 0
+            # id = 118318, 标签 = 机器作者, len(content) = 0
             print('id={}, 标签={}, len(content)={}'.format(row['id'], row['标签'], len(content)))
         return len(content)
 
@@ -27,14 +30,9 @@ class ContentLen(Analyzer):
                                                       np.min(vecs),
                                                       np.median(vecs),
                                                       np.average(vecs)))
-        # id = 3911, 标签 = 人类作者, len(content) = 101487
-        # id = 141703, 标签 = 人类作者, len(content) = 101487
-        # id = 83445, 标签 = 机器作者, len(content) = 0
-        # id = 118318, 标签 = 机器作者, len(content) = 0
 
 
 class ContentLenDistribution(Analyzer):
-    # How to draw: https://www.kesci.com/apps/home/project/59f6f21bc5f3f511952c2966
 
     def __init__(self, conf):
         Analyzer.__init__(self, conf)
@@ -46,6 +44,7 @@ class ContentLenDistribution(Analyzer):
         return ins
 
     def aggregate(self, vecs):
+        # How to draw: https://www.kesci.com/apps/home/project/59f6f21bc5f3f511952c2966
         data = dict()
         for ins in vecs:
             label = ins['标签']
