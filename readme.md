@@ -8,6 +8,7 @@
 -	[Abstract](#abstract)
 -   [Set Up](#setup)
 -   [Usage](#usage)
+-   [Analysis](#analysis)
 -   [Submitting](#submitting)
 
 ****
@@ -38,3 +39,9 @@ python -m pip install gensim
 ```Shell
 python -m bin.run
 ```
+
+****
+
+##	<a name="analysis"> Analysis </a>
+
+![Content Length](imag/content-length.png)
