@@ -7,6 +7,23 @@
 from bin.analysis.analyzer import Analyzer
 
 
+class Label(object):
+
+    cn2en = {
+        '人类作者': 'Human Auth',
+        '机器翻译': 'Machine Trans',
+        '自动摘要': 'Auto Sub',
+        '机器作者': 'Machine Auth'
+    }
+
+    cn2id = {
+        '人类作者': 0,
+        '机器翻译': 1,
+        '自动摘要': 2,
+        '机器作者': 3
+    }
+
+
 class LabelCount(Analyzer):
 
     def __init__(self, conf):

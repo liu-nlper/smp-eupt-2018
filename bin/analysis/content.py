@@ -7,6 +7,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from bin.analysis.analyzer import Analyzer
+from bin.analysis.label import Label
 
 
 class ContentLen(Analyzer):
@@ -54,12 +55,9 @@ class ContentLenDistribution(Analyzer):
 
         bins = np.arange(0, 1e4, 2 * 1e2)
 
-        label_cn = ['人类作者', '机器翻译', '自动摘要', '机器作者']
-        label_en = ['Human Auth', 'Machine Trans', 'Auto Sub', 'Machine Auth']
-
-        for label in zip(label_cn, label_en):
-            label_data = data[label[0]]
-            plt.hist(label_data, label=label[1], alpha=0.5, bins=bins)
+        for label in Label.cn2en:
+            label_data = data[label]
+            plt.hist(label_data, label=Label.cn2en[label], alpha=0.5, bins=bins)
 
         plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
         plt.rcParams['axes.unicode_minus'] = False
