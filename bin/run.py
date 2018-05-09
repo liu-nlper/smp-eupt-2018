@@ -8,7 +8,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import ConfigParser
+from six.moves import configparser
 from absl import app
 from absl import flags
 
@@ -20,7 +20,7 @@ flags.DEFINE_string('conf', 'conf/template.conf', 'specify the path of config fi
 
 
 def main(_):
-    conf = ConfigParser.ConfigParser()
+    conf = configparser.ConfigParser()
     conf.read(FLAGS.conf)
     getattr(__import__(FLAGS.package, fromlist=["*"]), FLAGS.object)(conf).run()
 

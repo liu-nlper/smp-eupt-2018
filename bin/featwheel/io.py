@@ -32,3 +32,17 @@ def write_csv(file_name, data):
                 row[field_name] = data[field_name][i]
             writer.writerow(row)
         logging.info('write csv done [{}]'.format(file_name))
+
+
+def read_csv(file_name):
+    data = {}
+    with open(file_name) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            for key in row:
+                if key in data:
+                    data[key].append(row[key])
+                else:
+                    data[key] = [row[key]]
+        logging.info('read csv done [{}]'.format(file_name))
+    return data
