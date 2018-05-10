@@ -44,4 +44,13 @@ python -m bin.run
 
 ##	<a name="analysis"> Analysis </a>
 
+### Content Length
+
+| Label | Max   | Min   | Mean  |
+| ----  | ----  | ----  | ----  |
+| 人类作者 | 101487 | 105   | 2616  |
+| 机器翻译 | 3382   | 371   | 1095  |
+| 自动摘要 | 1443   | 65    | 254   |
+| 机器作者 | 6971   | 0     | 3238  |
+
 ![Content Length](img/content-length.png)

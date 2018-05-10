@@ -53,6 +53,17 @@ class ContentLenDistribution(Analyzer):
             data[label] = data.get(label, list())
             data[label].append(c_len)
 
+        # label=人类作者: max=101487, min=105, med=1380.0, ave=2616.42465326
+        # label=机器翻译: max=3382, min=371, med=1084.0, ave=1095.47655085
+        # label=自动摘要: max=1443, min=65, med=237.0, ave=254.209995489
+        # label=机器作者: max=6971, min=0, med=3487.0, ave=3238.79212528
+        for label in data:
+            print('label={}: max={}, min={}, med={}, ave={}'.format(label,
+                                                                    np.max(data[label]),
+                                                                    np.min(data[label]),
+                                                                    np.median(data[label]),
+                                                                    np.average(data[label])))
+
         bins = np.arange(0, 1e4, 2 * 1e2)
 
         for label in Label.cn2en:
