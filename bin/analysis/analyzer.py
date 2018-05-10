@@ -28,4 +28,4 @@ class Analyzer(object):
         self.aggregate(vecs)
 
     def run(self):
-        self.analyze('training')
+        self.analyze('train')

@@ -15,7 +15,7 @@ class Json2CSV(object):
 
     def run(self):
         raw_path = self.conf.get('PATH', 'raw')
-        txt_path = '{}/training.txt'.format(raw_path)
+        txt_path = '{}/train.txt'.format(raw_path)
         data = load_txt(txt_path)
 
         csv_path = '{}/training.csv'.format(raw_path)
