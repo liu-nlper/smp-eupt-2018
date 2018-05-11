@@ -37,7 +37,7 @@ python -m pip install gensim
 ##	<a name="usage"> Usage </a>
 
 ```Shell
-python -m bin.run
+python -m bin.go
 ```
 
 ****
