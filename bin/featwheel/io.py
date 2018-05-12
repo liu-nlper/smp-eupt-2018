@@ -5,7 +5,46 @@
 # @Email   : houjp1992@gmail.com
 
 import csv
+from enum import Enum
 from absl import logging
+
+
+class ValidType(Enum):
+    STR = 'str'
+    INT = 'int'
+    FLOAT = 'float'
+
+
+def save_vector(file_name, vec, mode):
+    """
+    Save vector on disk
+    :param file_name: vector file path
+    :param vec: a vector in List type
+    :param mode: mode of writing file
+    :return: none
+    """
+    f = open(file_name, mode)
+    for value in vec:
+        f.write(str(value) + "\n")
+    f.close()
+
+
+def load_vector(file_name, ele_type):
+    """
+    Load vector from disk
+    :param file_name: vector file path
+    :param ele_type: element type in vector
+    :return: a vector in List type
+    """
+    ele_type = eval(ele_type.value.lower())
+    vec = []
+    f = open(file_name)
+    for line in f:
+        value = ele_type(line.strip())
+        vec.append(value)
+    f.close()
+    logging.info('Load vector done [len={}] [path={}]'.format(len(vec), file_name))
+    return vec
 
 
 def write_csv(file_name, data):

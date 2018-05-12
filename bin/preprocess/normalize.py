@@ -4,14 +4,17 @@
 # @Author  : HouJP
 # @Email   : houjp1992@gmail.com
 
-import json
-from bin.featwheel.io import write_csv
+import random
+from absl import logging
+from bin.featwheel.base import Base
+from bin.preprocess.loader import load_txt, get_data_size
+from bin.featwheel.io import write_csv, save_vector
 
 
-class Json2CSV(object):
+class Json2CSV(Base):
 
     def __init__(self, conf):
-        self.conf = conf
+        Base.__init__(self, conf)
 
     def run(self):
         raw_path = self.conf.get('PATH', 'raw')
@@ -22,16 +25,50 @@ class Json2CSV(object):
         write_csv(csv_path, data)
 
 
-def load_txt(file_path):
-    data = dict()
-    with open(file_path, 'r') as f:
-        for line in f:
-            instance = json.loads(line)
-            for key in instance:
-                key_encode = key.encode('utf-8')
-                data[key_encode] = data.get(key_encode, list())
-                if isinstance(instance[key], unicode):
-                    data[key_encode].append(instance[key].encode('utf-8'))
-                else:
-                    data[key_encode].append(instance[key])
-    return data
+class IndexGenerator(Base):
+
+    def __init__(self, conf):
+        Base.__init__(self, conf, enable_params=True)
+
+    @staticmethod
+    def random_split(vec, rates):
+        """
+        Random split vector with rates
+        :param vec: vector
+        :param rates: Proportions of each part of the data
+        :return: list of subsets
+        """
+        slices = []
+        pre_sum_rates = []
+        sum_rates = 0.0
+        for rate in rates:
+            slices.append([])
+            pre_sum_rates.append(sum_rates + rate)
+            sum_rates += rate
+        for e in vec:
+            randn = random.random()
+            for i in range(0, len(pre_sum_rates)):
+                if randn < pre_sum_rates[i]:
+                    slices[i].append(e)
+                    break
+        n_slices = []
+        for slic in slices:
+            n_slices.append(len(slic))
+        logging.info('Random split vector done [n_vec={}] [n_slices={}]'.format(len(vec), str(n_slices)))
+        return slices
+
+    @staticmethod
+    def get_section_name():
+        return 'PRE'
+
+    def run(self):
+        cv_num = self.params['cv_num']
+        index_name = self.params['index_name']
+        index_slices = self.random_split(range(get_data_size('{}/train.csv'.format(self.conf.get('PATH', 'raw')))),
+                                         [1.0 / cv_num] * cv_num)
+        # r0: [n_slices=[29577, 29177, 29212, 29238, 29217]]
+        for kv in enumerate(index_slices):
+            cv_id = kv[0]
+            index_slice = kv[1]
+            file_name = '{}/{}_{}_{}.train.index'.format(self.conf.get('PATH', 'index'), index_name, cv_id, cv_num)
+            save_vector(file_name, index_slice, 'w')
