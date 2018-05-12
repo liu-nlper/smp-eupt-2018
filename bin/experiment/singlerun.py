@@ -8,7 +8,7 @@ import json
 import numpy as np
 from absl import logging
 from bin.model.model import Model
-from bin.run.runner import Runner
+from bin.experiment.runner import Runner
 from bin.featwheel.io import load_vector, ValidType, write_csv
 from bin.preprocess.loader import load_label_id
 from bin.featwheel.feature import load_all, sample_row
@@ -20,14 +20,10 @@ class SingleRun(Runner):
     def __init__(self, conf):
         Runner.__init__(self, conf)
 
-    @staticmethod
-    def get_section_name():
-        return 'RUN'
-
     def load_index(self):
         cv_id = self.params['cv_id']
         cv_num = self.params['cv_num']
-        index_name = self.conf.get('RUN', 'index_name')
+        index_name = self.conf.get(self.get_section_name(), 'index_name')
         index_path = self.conf.get('PATH', 'index')
 
         train_indexs = list()
@@ -73,7 +69,7 @@ class SingleRun(Runner):
 
         # load feature
         f_vecs = load_all(self.conf.get('PATH', 'feature'),
-                          self.conf.get('RUN', 'feature').split(),
+                          self.conf.get(self.get_section_name(), 'feature').split(),
                           'train',
                           False)
         # load label

@@ -41,7 +41,7 @@ python -m pip install gensim
 python -m bin.go
 
 # Builds a model
-python -m bin.go --package bin.run.singlerun --object SingleRun 
+python -m bin.go --package bin.experiment.singlerun --object SingleRun 
 ```
 
 ****

@@ -18,25 +18,29 @@ class Runner(Base):
         self.run_path = self.__init_run_dir()
         self.save_conf()
 
+    @staticmethod
+    def get_section_name():
+        return 'EXPERIMENT'
+
     def __init_run_dir(self):
         """
-        If tag is empty, create tag & directory for this run.
+        If tag is empty, create tag & directory for this experiment.
 
-        :return: the path of this run
+        :return: the path of this experiment
         """
-        if self.conf.get('RUN', 'tag') != '':
-            run_tag = self.conf.get('RUN', 'tag')
+        if self.conf.get(self.get_section_name(), 'tag') != '':
+            run_tag = self.conf.get(self.get_section_name(), 'tag')
         else:
             run_tag = time.strftime("%Y-%m-%d_%H-%M-%S", time.localtime(time.time()))
-            self.conf.set('RUN', 'tag', run_tag)
+            self.conf.set(self.get_section_name(), 'tag', run_tag)
 
-            # generate run dir
+            # generate experiment dir
             run_path = '%s/%s/' % (self.conf.get('PATH', 'out'), run_tag)
             if os.path.exists(run_path):
                 raise ValueError('Run path already exist [path={}]'.format(run_path))
             else:
                 os.mkdir(run_path)
-            logging.info('Create run path [path={}]'.format(run_path))
+            logging.info('Create experiment path [path={}]'.format(run_path))
 
         run_path = '%s/%s/' % (self.conf.get('PATH', 'out'), run_tag)
         return run_path
