@@ -37,7 +37,11 @@ python -m pip install gensim
 ##	<a name="usage"> Usage </a>
 
 ```Shell
+# Overall
 python -m bin.go
+
+# Builds a model
+python -m bin.go --package bin.run.singlerun --object SingleRun 
 ```
 
 ****
