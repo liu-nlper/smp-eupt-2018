@@ -20,9 +20,7 @@ class SingleRun(Runner):
     def __init__(self, conf):
         Runner.__init__(self, conf)
 
-    def load_index(self):
-        cv_id = self.params['cv_id']
-        cv_num = self.params['cv_num']
+    def load_index(self, cv_id, cv_num):
         index_name = self.conf.get(self.get_section_name(), 'index_name')
         index_path = self.conf.get('PATH', 'index')
 
@@ -48,10 +46,7 @@ class SingleRun(Runner):
 
         return labels, f_vecs
 
-    def save_valid_preds(self, valid_indexs, valid_preds, model_name):
-        cv_id = self.params['cv_id']
-        cv_num = self.params['cv_num']
-
+    def save_valid_preds(self, valid_indexs, valid_preds, model_name, cv_id, cv_num):
         data_preds = dict()
         data_preds['index'] = valid_indexs
         data_preds['label_id_pred'] = valid_preds
@@ -63,10 +58,9 @@ class SingleRun(Runner):
                                                   'valid')
         write_csv(file_name, data_preds)
 
-    def run_offline(self):
-        cv_id = self.params['cv_id']
-        cv_num = self.params['cv_num']
-
+    def run_offline(self, cv_id=-1, cv_num=-1):
+        self.params['cv_id'] = cv_id
+        self.params['cv_num'] = cv_num
         # load feature
         f_vecs = load_all(self.conf.get('PATH', 'feature'),
                           self.conf.get(self.get_section_name(), 'feature').split(),
@@ -75,7 +69,7 @@ class SingleRun(Runner):
         # load label
         labels = np.array(load_label_id('{}/{}.csv'.format(self.conf.get('PATH', 'raw'), 'train')))
         # load index
-        train_indexs, valid_indexs = self.load_index()
+        train_indexs, valid_indexs = self.load_index(cv_id, cv_num)
 
         # generate data set
         train_labels, train_f_vecs = self.generate_data(train_indexs, labels, f_vecs)
@@ -89,7 +83,7 @@ class SingleRun(Runner):
                                  'valid_f_vecs': valid_f_vecs},
                                 cv_id,
                                 cv_num)
-        self.save_valid_preds(valid_indexs, valid_preds, model.get_class_name())
+        self.save_valid_preds(valid_indexs, valid_preds, model.get_class_name(), cv_id, cv_num)
         model.save('{}/{}_{}_{}.model'.format(self.run_path, model.get_class_name(), cv_id, cv_num))
 
         # evaluation
@@ -101,4 +95,4 @@ class SingleRun(Runner):
         self.save_conf()
 
     def run(self):
-        self.run_offline()
+        self.run_offline(self.params['cv_id'], self.params['cv_num'])

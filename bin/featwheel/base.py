@@ -15,7 +15,7 @@ class Base(object):
 
         if enable_params:
             self.params = eval(self.conf.get(self.get_section_name(),
-                                             title2underline(self.get_class_name())))
+                                             self.get_class_name()))
             logging.info('[name={}] [params={}]'.format(self.__class__.__name__, self.params))
         else:
             self.params = {}
@@ -28,4 +28,4 @@ class Base(object):
         assert False, 'Please override Base.get_section_name'
 
     def get_class_name(self):
-        return self.__class__.__name__
+        return title2underline(self.__class__.__name__)
