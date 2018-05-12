@@ -41,7 +41,10 @@ python -m pip install gensim
 python -m bin.go
 
 # Builds a model
-python -m bin.go --package bin.experiment.singlerun --object SingleRun 
+python -m bin.go --package bin.experiment.singlerun --object SingleRun
+
+# Cross validation
+python -m bin.go --package bin.experiment.cv --object CrossValidation
 ```
 
 ****
