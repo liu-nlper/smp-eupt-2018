@@ -67,7 +67,7 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 ##	<a name="exp"> Experiment </a>
 
-| Version             | Online    | Offline   | Note                    |
-| ----                  | ----      | ----      | ----                  |
-| ----                  | ----      | 0.8125    | add word_num          |
-| ----                  | ----      | 0.8072    | add content_length    |
+| Version               | Online    | Offline   | Note                  |
+| v003                  | ------    | 0.85419   | add word_set_num      |
+| v002                  | ------    | 0.80656   | add word_num          |
+| v001                  | ------    | 0.79878   | add content_length    |
