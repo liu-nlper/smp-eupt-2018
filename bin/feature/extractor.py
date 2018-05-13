@@ -7,14 +7,15 @@
 import csv
 from absl import logging
 from bin.featwheel.feature import save_vector
+from bin.featwheel.base import Base
 
 
-class Extractor(object):
+class Extractor(Base):
 
     def __init__(self, conf):
-        self.conf = conf
+        Base.__init__(self, conf)
         # set feature name
-        self.feature_name = self.__class__.__name__
+        self.feature_name = self.get_class_name()
         # load data
         self.pre_data = self.load_pre_data()
 
@@ -35,13 +36,13 @@ class Extractor(object):
                 data_size += 1
         return data_size
 
-    def extract(self, data_name):
+    def extract(self, data_name='train', data_type='train'):
         data_size = self.get_data_size(data_name)
         feat_size = self.get_feature_size()
 
         feat_file_path = '{}/{}.{}.smat'.format(self.conf.get('PATH', 'feature'),
                                                 self.feature_name,
-                                                data_name)
+                                                data_type)
         feat_file = open(feat_file_path, 'w')
         feat_file.write('{} {}\n'.format(data_size, feat_size))
 
@@ -56,4 +57,4 @@ class Extractor(object):
         logging.info('Save feature done [name={}] [path={}]'.format(self.feature_name, feat_file_path))
 
     def run(self):
-        self.extract('train')
+        self.extract()

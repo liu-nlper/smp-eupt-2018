@@ -5,10 +5,11 @@
 # @Email   : houjp1992@gmail.com
 
 import random
+import jieba
 from absl import logging
 from bin.featwheel.base import Base
 from bin.preprocess.loader import load_txt, get_data_size
-from bin.featwheel.io import write_csv, save_vector
+from bin.featwheel.io import write_csv, save_vector, read_csv
 
 
 class Json2CSV(Base):
@@ -72,3 +73,19 @@ class IndexGenerator(Base):
             index_slice = kv[1]
             file_name = '{}/{}_{}_{}.train.index'.format(self.conf.get('PATH', 'index'), index_name, cv_id, cv_num)
             save_vector(file_name, index_slice, 'w')
+
+
+class JiebaCutter(Base):
+
+    def __init__(self, conf):
+        Base.__init__(self, conf)
+
+    def run(self):
+        raw_path = self.conf.get('PATH', 'raw')
+        data = read_csv('{}/train.csv'.format(self.conf.get('PATH', 'raw')))
+        jieba_data = {'jieba': list(), '标签': data['标签']}
+        for content in data['内容']:
+            words = list(jieba.cut(content))
+            words = [word.encode('utf8') for word in words]
+            jieba_data['jieba'].append('#_#'.join(words))
+        write_csv('{}/{}.train.csv'.format(raw_path, self.get_class_name()), jieba_data)
