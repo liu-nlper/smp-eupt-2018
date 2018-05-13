@@ -67,7 +67,7 @@ class SingleRun(Runner):
                           'train',
                           False)
         # load label
-        labels = np.array(load_label_id('{}/{}.csv'.format(self.conf.get('PATH', 'raw'), 'train')))
+        labels = np.array(load_label_id('{}/{}.{}.csv'.format(self.conf.get('PATH', 'raw'), 'raw', 'train')))
         # load index
         train_indexs, valid_indexs = self.load_index(cv_id, cv_num)
 
