@@ -65,7 +65,7 @@ class IndexGenerator(Base):
     def run(self):
         cv_num = self.params['cv_num']
         index_name = self.params['index_name']
-        index_slices = self.random_split(range(get_data_size('{}/train.csv'.format(self.conf.get('PATH', 'raw')))),
+        index_slices = self.random_split(range(get_data_size('{}/raw.train.csv'.format(self.conf.get('PATH', 'raw')))),
                                          [1.0 / cv_num] * cv_num)
         # r0: [n_slices=[29577, 29177, 29212, 29238, 29217]]
         for kv in enumerate(index_slices):
@@ -82,7 +82,7 @@ class JiebaCutter(Base):
 
     def run(self):
         raw_path = self.conf.get('PATH', 'raw')
-        data = read_csv('{}/train.csv'.format(self.conf.get('PATH', 'raw')))
+        data = read_csv('{}/raw.train.csv'.format(self.conf.get('PATH', 'raw')))
         jieba_data = {'jieba': list(), '标签': data['标签']}
         for content in data['内容']:
             words = list(jieba.cut(content))

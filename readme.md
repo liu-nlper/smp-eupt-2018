@@ -30,6 +30,7 @@ python -m pip install ConfigParser
 python -m pip install xgboost
 python -m pip install scikit-learn
 python -m pip install gensim
+python -m pip install jieba
 ```
 
 ****
