@@ -87,9 +87,10 @@ class SingleRun(Runner):
         model.save('{}/{}_{}_{}.model'.format(self.run_path, model.get_class_name(), cv_id, cv_num))
 
         # evaluation
-        score = ave_f1(valid_labels, valid_preds, 4)
+        score = ave_f1(valid_labels, valid_preds, 4, False)
         self.params['score'] = score
         self.conf.set(self.get_section_name(), self.get_class_name(), str(json.dumps(self.params, indent=4)))
+        logging.info('validation score [ave_f1={}]'.format(score['ave_f1']))
 
         # save config
         self.save_conf()

@@ -9,7 +9,7 @@
 -   [Set Up](#setup)
 -   [Usage](#usage)
 -   [Analysis](#analysis)
--   [Submitting](#submitting)
+-   [Experiment](#exp)
 
 ****
 
@@ -61,3 +61,11 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 | 机器作者 | 6971   | 0     | 3238  |
 
 ![Content Length](img/content-length.png)
+
+****
+
+##	<a name="exp"> Experiment </a>
+
+| Timestamp             | Online    | Offline   | Note                  |
+| ----                  | ----      | ----      | ----                  |
+| None                  | None      | 0.8072    | add ContentLength     |

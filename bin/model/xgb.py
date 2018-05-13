@@ -8,12 +8,18 @@ import json
 import xgboost as xgb
 from absl import logging
 from bin.model.model import Model
+from bin.model.evaluation import ave_f1 as eval_ave_f1
 
 
 class XGB(Model):
 
     def __init__(self, conf):
         Model.__init__(self, conf)
+
+    @staticmethod
+    def ave_f1(preds, dmatrix):
+        labels = dmatrix.get_label()
+        return 'ave_f1', eval_ave_f1(labels, preds, 4, False)['ave_f1']
 
     def fit(self, data, cv_id, cv_num):
         train_dmatrix = xgb.DMatrix(data['train_f_vecs'], label=data['train_labels'])

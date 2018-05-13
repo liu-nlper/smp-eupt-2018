@@ -7,7 +7,7 @@
 from absl import logging
 
 
-def ave_f1(labels, preds, class_num):
+def ave_f1(labels, preds, class_num, enable_log=True):
     assert len(labels) == len(preds), '[len(labels)={}] [len(preds)={}]'.format(len(labels), len(preds))
 
     score = dict()
@@ -31,6 +31,7 @@ def ave_f1(labels, preds, class_num):
         score['f1_{}'.format(class_id)] = f1
         sum_f1 += f1
     score['ave_f1'] = sum_f1 / class_num
-    logging.info('[score={}]'.format(score))
+    if enable_log:
+        logging.info('[score={}]'.format(score))
 
     return score
