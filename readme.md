@@ -68,4 +68,4 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 | Timestamp             | Online    | Offline   | Note                  |
 | ----                  | ----      | ----      | ----                  |
-| None                  | None      | 0.8072    | add ContentLength     |
+| ----                  | ----      | 0.8072    | add ContentLength     |
