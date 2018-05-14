@@ -88,8 +88,8 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 ### Word Set Number
 
 <div align="center">
-    <img src="img/word_set_num_hist.png" height="300px" />
-    <img src="img/word_set_num_kde.png" height="300px" />
+    <img src="img/word_set_num_3_hist.png" height="300px" />
+    <img src="img/word_set_num_3_kde.png" height="300px" />
 </div>
 
 ****
