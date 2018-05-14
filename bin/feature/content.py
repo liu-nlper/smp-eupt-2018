@@ -7,7 +7,6 @@
 import csv
 import sys
 import jieba
-import numpy as np
 from bin.feature.extractor import Extractor
 from bin.featwheel.string import title2underline
 
@@ -27,8 +26,8 @@ class ContentLength(Extractor):
         return [len(content)]
 
     def visual(self):
-        bins = np.arange(0, 1e4, 2 * 1e2)
-        self.draw_hist(bins=bins)
+        self.draw_hist(x_max=10000)
+        self.draw_kernel_density(x_max=10000)
 
 
 class WordNum(Extractor):
@@ -42,6 +41,10 @@ class WordNum(Extractor):
     def extract_row(self, row):
         content = row['内容']
         return [len(list(jieba.cut(content)))]
+
+    def visual(self):
+        self.draw_hist(x_max=1500)
+        self.draw_kernel_density(x_max=1500)
 
 
 class WordSetNum(Extractor):
@@ -65,4 +68,5 @@ class WordSetNum(Extractor):
         self.extract(data_name='jieba_cutter')
 
     def visual(self):
-        self.draw_hist(bins=np.arange(0, 4000, 4000 / 50))
+        self.draw_hist(x_max=600)
+        self.draw_kernel_density(x_max=600)

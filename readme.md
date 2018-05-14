@@ -73,7 +73,10 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 | 自动摘要 | 1443   | 65    | 254   |
 | 机器作者 | 6971   | 0     | 3238  |
 
-![Content Length](img/content-length.png)
+<figure class="half">
+    <img src="img/content_length_hist.png">
+    <img src="img/content_length_kde.png">
+</figure>
 
 ****
 

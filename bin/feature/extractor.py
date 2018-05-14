@@ -8,7 +8,7 @@ import csv
 from absl import logging
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.mlab as mlab
+from sklearn.neighbors import KernelDensity
 from bin.featwheel.feature import save_vector, load
 from bin.featwheel.base import Base
 from bin.featwheel.io import read_csv
@@ -78,8 +78,10 @@ class Extractor(Base):
             data[label].append(c_len)
         return data
 
-    def draw_hist(self, f_id=0, bins=10, data_name='raw', data_type='train'):
+    def draw_hist(self, f_id=0, x_min=0, x_max=2000, bin_num=200, data_name='raw', data_type='train'):
         data = self.load_draw_data(f_id=f_id, data_name=data_name, data_type=data_type)
+
+        bins = np.arange(x_min, x_max, x_max / bin_num)
 
         for label in Label.cn2en:
             label_data = data[label]
@@ -93,9 +95,24 @@ class Extractor(Base):
         plt.legend()
         plt.show()
 
-    def draw_kernel_density(self, f_id=0, data_name='raw', data_type='train'):
-        # TODO(jianpenghou)
-        pass
+    def draw_kernel_density(self, f_id=0, x_min=0, x_max=2000, bin_num=200, data_name='raw', data_type='train'):
+        data = self.load_draw_data(f_id=f_id, data_name=data_name, data_type=data_type)
+
+        bins = np.linspace(x_min, x_max, bin_num)[:, np.newaxis]
+
+        for label in Label.cn2en:
+            label_data = np.array(data[label])
+            kde = KernelDensity(kernel='gaussian', bandwidth=0.5).fit(label_data[:, np.newaxis])
+            log_dens = kde.score_samples(bins)
+            plt.plot(bins[:, 0], np.exp(log_dens), '-', label='{}'.format(Label.cn2en[label]))
+
+        plt.title('{} analysis'.format(self.get_class_name()))
+        plt.xlabel(self.get_class_name())
+        plt.ylabel('probability density')
+
+        plt.tick_params(top='off', right='off')
+        plt.legend()
+        plt.show()
 
     def run(self):
         self.extract()
