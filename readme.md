@@ -78,6 +78,20 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
     <img src="img/content_length_kde.png" height="300px" />
 </div>
 
+### Word Number
+
+<div align="center">
+    <img src="img/word_num_hist.png" height="300px" />
+    <img src="img/word_num_kde.png" height="300px" />
+</div>
+
+### Word Set Number
+
+<div align="center">
+    <img src="img/word_set_num_hist.png" height="300px" />
+    <img src="img/word_set_num_kde.png" height="300px" />
+</div>
+
 ****
 
 ##	<a name="exp"> Experiment </a>
