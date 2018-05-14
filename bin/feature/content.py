@@ -63,3 +63,6 @@ class WordSetNum(Extractor):
 
     def run(self):
         self.extract(data_name='jieba_cutter')
+
+    def visual(self):
+        self.draw_hist(bins=np.arange(0, 4000, 4000 / 50))

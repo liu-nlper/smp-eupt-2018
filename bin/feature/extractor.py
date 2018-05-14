@@ -6,11 +6,14 @@
 
 import csv
 from absl import logging
+import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.mlab as mlab
 from bin.featwheel.feature import save_vector, load
 from bin.featwheel.base import Base
 from bin.featwheel.io import read_csv
 from bin.analysis.label import Label
+
 
 class Extractor(Base):
 
@@ -58,7 +61,7 @@ class Extractor(Base):
         feat_file.close()
         logging.info('Save feature done [name={}] [path={}]'.format(self.feature_name, feat_file_path))
 
-    def draw_hist(self, f_id=0, bins=10, data_name='raw', data_type='train'):
+    def load_draw_data(self, f_id=0, data_name='raw', data_type='train'):
         raw_path = self.conf.get('PATH', 'raw')
         feature_path = self.conf.get('PATH', 'feature')
 
@@ -73,18 +76,26 @@ class Extractor(Base):
             c_len = f_vecs[i][f_id]
             data[label] = data.get(label, list())
             data[label].append(c_len)
+        return data
+
+    def draw_hist(self, f_id=0, bins=10, data_name='raw', data_type='train'):
+        data = self.load_draw_data(f_id=f_id, data_name=data_name, data_type=data_type)
 
         for label in Label.cn2en:
             label_data = data[label]
             plt.hist(label_data, label=Label.cn2en[label], alpha=0.5, bins=bins)
 
-        plt.title('{} Analysis'.format(self.get_class_name()))
+        plt.title('{} analysis'.format(self.get_class_name()))
         plt.xlabel(self.get_class_name())
-        plt.ylabel('Count')
+        plt.ylabel('count')
 
         plt.tick_params(top='off', right='off')
         plt.legend()
         plt.show()
+
+    def draw_kernel_density(self, f_id=0, data_name='raw', data_type='train'):
+        # TODO(jianpenghou)
+        pass
 
     def run(self):
         self.extract()
