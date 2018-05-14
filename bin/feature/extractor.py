@@ -6,9 +6,11 @@
 
 import csv
 from absl import logging
-from bin.featwheel.feature import save_vector
+import matplotlib.pyplot as plt
+from bin.featwheel.feature import save_vector, load
 from bin.featwheel.base import Base
-
+from bin.featwheel.io import read_csv
+from bin.analysis.label import Label
 
 class Extractor(Base):
 
@@ -56,5 +58,37 @@ class Extractor(Base):
         feat_file.close()
         logging.info('Save feature done [name={}] [path={}]'.format(self.feature_name, feat_file_path))
 
+    def draw_hist(self, f_id=0, bins=10, data_name='raw', data_type='train'):
+        raw_path = self.conf.get('PATH', 'raw')
+        feature_path = self.conf.get('PATH', 'feature')
+
+        f_name = '%s/%s.%s.smat' % (feature_path, self.get_class_name(), data_type)
+        f_vecs = load(f_name).toarray()
+
+        labels = read_csv('{}/{}.{}.csv'.format(raw_path, data_name, data_type))['标签']
+
+        data = dict()
+        for i in range(len(labels)):
+            label = labels[i]
+            c_len = f_vecs[i][f_id]
+            data[label] = data.get(label, list())
+            data[label].append(c_len)
+
+        for label in Label.cn2en:
+            label_data = data[label]
+            plt.hist(label_data, label=Label.cn2en[label], alpha=0.5, bins=bins)
+
+        plt.title('{} Analysis'.format(self.get_class_name()))
+        plt.xlabel(self.get_class_name())
+        plt.ylabel('Count')
+
+        plt.tick_params(top='off', right='off')
+        plt.legend()
+        plt.show()
+
     def run(self):
         self.extract()
+
+    def visual(self):
+        assert False, 'Please override function: Extractor.visual'
+

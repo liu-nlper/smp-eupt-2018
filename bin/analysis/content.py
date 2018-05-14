@@ -5,9 +5,7 @@
 # @Email   : houjp1992@gmail.com
 
 import numpy as np
-import matplotlib.pyplot as plt
 from bin.analysis.analyzer import Analyzer
-from bin.analysis.label import Label
 
 
 class ContentLen(Analyzer):
@@ -63,20 +61,3 @@ class ContentLenDistribution(Analyzer):
                                                                     np.min(data[label]),
                                                                     np.median(data[label]),
                                                                     np.average(data[label])))
-
-        bins = np.arange(0, 1e4, 2 * 1e2)
-
-        for label in Label.cn2en:
-            label_data = data[label]
-            plt.hist(label_data, label=Label.cn2en[label], alpha=0.5, bins=bins)
-
-        plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
-        plt.rcParams['axes.unicode_minus'] = False
-
-        plt.title('Content Length Analysis')
-        plt.xlabel('Content Length')
-        plt.ylabel('Count')
-
-        plt.tick_params(top='off', right='off')
-        plt.legend()
-        plt.show()

@@ -41,6 +41,18 @@ python -m pip install jieba
 # Overall
 python -m bin.go
 
+# Normalize data
+python -m bin.go --package bin.preprocess.normalize --object Json2CSV 
+
+# Generate index
+python -m bin.go --package bin.preprocess.normalize --object IndexGenerator 
+
+# Generate feature
+python -m bin.go --package bin.feature.statistics --object SentenceLength    
+
+# Feature visualization
+python -m bin.go --package bin.feature.content --object ContentLength --func visual 
+
 # Builds a model
 python -m bin.go --package bin.experiment.singlerun --object SingleRun
 

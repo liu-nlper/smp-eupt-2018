@@ -7,6 +7,7 @@
 import csv
 import sys
 import jieba
+import numpy as np
 from bin.feature.extractor import Extractor
 from bin.featwheel.string import title2underline
 
@@ -24,6 +25,10 @@ class ContentLength(Extractor):
     def extract_row(self, row):
         content = row['内容']
         return [len(content)]
+
+    def visual(self):
+        bins = np.arange(0, 1e4, 2 * 1e2)
+        self.draw_hist(bins=bins)
 
 
 class WordNum(Extractor):

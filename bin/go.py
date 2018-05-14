@@ -16,13 +16,14 @@ FLAGS = flags.FLAGS
 
 flags.DEFINE_string('package', 'bin.demo', 'specify the package path to be run')
 flags.DEFINE_string('object', 'HelloWorld', 'specify the class name to be run')
+flags.DEFINE_string('func', 'run', 'specify the function name to be run')
 flags.DEFINE_string('conf', 'conf/template.conf', 'specify the path of config file')
 
 
 def main(_):
     conf = configparser.ConfigParser()
     conf.read(FLAGS.conf)
-    getattr(__import__(FLAGS.package, fromlist=["*"]), FLAGS.object)(conf).run()
+    getattr(getattr(__import__(FLAGS.package, fromlist=["*"]), FLAGS.object)(conf), FLAGS.func)()
 
 
 if __name__ == '__main__':
