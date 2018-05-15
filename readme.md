@@ -92,22 +92,22 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 ### Content Length
 
 <div align="center">
-    <img src="img/content_length_hist.png" height="300px" />
-    <img src="img/content_length_kde.png" height="300px" />
+    <img src="/img/content_length_hist.png" height="300px" />
+    <img src="/img/content_length_kde.png" height="300px" />
 </div>
 
 ### Chinese Char Ratio
 
 <div align="center">
-    <img src="img/chinese_char_ratio_hist.png" height="300px" />
-    <img src="img/chinese_char_ratio_kde.png" height="300px" />
+    <img src="/img/chinese_char_ratio_hist.png" height="300px" />
+    <img src="/img/chinese_char_ratio_kde.png" height="300px" />
 </div>
 
 ### Digit Char Ratio
 
 <div align="center">
-    <img src="img/digit_char_ratio_hist.png" height="300px" />
-    <img src="img/digit_char_ratio_kde.png" height="300px" />
+    <img src="/img/digit_char_ratio_hist.png" height="300px" />
+    <img src="/img/digit_char_ratio_kde.png" height="300px" />
 </div>
 
 **More visual graphs** for features can be found [here](doc/visual.md).
