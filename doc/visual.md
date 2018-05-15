@@ -42,3 +42,9 @@
     <img src="/img/english_char_ratio_kde.png" height="300px" />
 </div>
 
+### Char Set Ratio
+
+<div align="center">
+    <img src="/img/char_set_ratio_hist.png" height="300px" />
+    <img src="/img/char_set_ratio_kde.png" height="300px" />
+</div>

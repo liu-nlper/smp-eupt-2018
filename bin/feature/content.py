@@ -121,3 +121,19 @@ class EnglishCharRatio(Extractor):
     def visual(self):
         self.draw_hist(x_max=.2)
         self.draw_kernel_density(x_max=0.2, bandwidth=0.005)
+
+
+class CharSetRatio(Extractor):
+    def __init__(self, conf):
+        Extractor.__init__(self, conf)
+
+    def get_feature_size(self):
+        return 1
+
+    def extract_row(self, row):
+        content = row['内容'].decode('utf-8')
+        return [1. * len(set(content)) / len(content) if len(content) > 0 else 0.]
+
+    def visual(self):
+        self.draw_hist(x_max=1.)
+        self.draw_kernel_density(x_max=1., bandwidth=0.005)

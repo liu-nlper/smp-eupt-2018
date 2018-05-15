@@ -103,11 +103,11 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
     <img src="/img/chinese_char_ratio_kde.png" height="300px" />
 </div>
 
-### Digit Char Ratio
+### Char Set Ratio
 
 <div align="center">
-    <img src="/img/digit_char_ratio_hist.png" height="300px" />
-    <img src="/img/digit_char_ratio_kde.png" height="300px" />
+    <img src="/img/char_set_ratio_hist.png" height="300px" />
+    <img src="/img/char_set_ratio_kde.png" height="300px" />
 </div>
 
 **More visual graphs** for features can be found [here](doc/visual.md).
