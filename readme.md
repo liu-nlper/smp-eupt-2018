@@ -110,7 +110,7 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
     <img src="img/digit_char_ratio_kde.png" height="300px" />
 </div>
 
-> More visual graphs for features can be found [here](doc/visual.md).
+**More visual graphs** for features can be found [here](doc/visual.md).
 
 ****
 
