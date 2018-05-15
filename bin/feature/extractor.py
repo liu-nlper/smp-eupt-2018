@@ -92,17 +92,24 @@ class Extractor(Base):
         plt.ylabel('count')
 
         plt.tick_params(top='off', right='off')
-        plt.legend()
+        plt.legend(loc='best')
         plt.show()
 
-    def draw_kernel_density(self, f_id=0, x_min=0, x_max=2000, bin_num=200, data_name='raw', data_type='train'):
+    def draw_kernel_density(self,
+                            f_id=0,
+                            x_min=0,
+                            x_max=2000,
+                            bin_num=200,
+                            data_name='raw',
+                            data_type='train',
+                            bandwidth=0.5):
         data = self.load_draw_data(f_id=f_id, data_name=data_name, data_type=data_type)
 
         bins = np.linspace(x_min, x_max, bin_num)[:, np.newaxis]
 
         for label in Label.cn2en:
             label_data = np.array(data[label])
-            kde = KernelDensity(kernel='gaussian', bandwidth=0.5).fit(label_data[:, np.newaxis])
+            kde = KernelDensity(kernel='gaussian', bandwidth=bandwidth).fit(label_data[:, np.newaxis])
             log_dens = kde.score_samples(bins)
             plt.plot(bins[:, 0], np.exp(log_dens), '-', label='{}'.format(Label.cn2en[label]))
 
@@ -111,7 +118,7 @@ class Extractor(Base):
         plt.ylabel('probability density')
 
         plt.tick_params(top='off', right='off')
-        plt.legend()
+        plt.legend(loc='best')
         plt.show()
 
     def run(self):

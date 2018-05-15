@@ -9,6 +9,7 @@
 -   [Set Up](#setup)
 -   [Usage](#usage)
 -   [Analysis](#analysis)
+-   [Visualization](#visual)
 -   [Experiment](#exp)
 
 ****
@@ -21,6 +22,8 @@
 
 ##  <a name="setup"> Set Up </a>
 
+### Install
+
 ```Shell
 # python 2.7
 python -m pip install numpy
@@ -31,6 +34,17 @@ python -m pip install xgboost
 python -m pip install scikit-learn
 python -m pip install gensim
 python -m pip install jieba
+```
+
+### Dirs
+
+```Shell
+mkdir data/
+mkdir data/feature/
+mkdir data/index/
+mkdir data/log/
+mkdir data/out/
+mkdir data/raw/
 ```
 
 ****
@@ -73,6 +87,10 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 | 自动摘要 | 1443   | 65    | 254   |
 | 机器作者 | 6971   | 0     | 3238  |
 
+##	<a name="visual"> Visualization </a>
+
+### Content Length
+
 <div align="center">
     <img src="img/content_length_hist.png" height="300px" />
     <img src="img/content_length_kde.png" height="300px" />
@@ -92,12 +110,20 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
     <img src="img/word_set_num_3_kde.png" height="300px" />
 </div>
 
+### Chinese Char Ratio
+
+<div align="center">
+    <img src="img/chinese_char_ratio_hist.png" height="300px" />
+    <img src="img/chinese_char_ratio_kde.png" height="300px" />
+</div>
+
 ****
 
 ##	<a name="exp"> Experiment </a>
 
-| Version               | Online    | Offline   | Note                  |
-| ----                  | ------    | -------   | ----                  |
-| v003                  | ------    | 0.85419   | add word_set_num      |
-| v002                  | ------    | 0.80656   | add word_num          |
-| v001                  | ------    | 0.79878   | add content_length    |
+| Version               | Online    | Offline   | Note                      |
+| ----                  | ------    | -------   | ----                      |
+| v004                  | ------    | 0.89020   | add chinese_char_ratio    |
+| v003                  | ------    | 0.85419   | add word_set_num          |
+| v002                  | ------    | 0.80656   | add word_num              |
+| v001                  | ------    | 0.79878   | add content_length        |
