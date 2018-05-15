@@ -5,6 +5,7 @@
 # @Email   : houjp1992@gmail.com
 
 import json
+from absl import logging
 from bin.experiment.runner import Runner
 from bin.experiment.singlerun import SingleRun
 
@@ -28,6 +29,7 @@ class CrossValidation(Runner):
         score['ave_{}'.format(eval_metric)] = score_sum / cv_num
         self.params['score'] = score
         self.conf.set(self.get_section_name(), self.get_class_name(), str(json.dumps(self.params, indent=4)))
+        logging.info('validation score [ave_{}={}]'.format(eval_metric, score['ave_{}'.format(eval_metric)]))
 
         # save config
         self.save_conf()

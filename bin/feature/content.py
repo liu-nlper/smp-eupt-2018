@@ -137,3 +137,31 @@ class CharSetRatio(Extractor):
     def visual(self):
         self.draw_hist(x_max=1.)
         self.draw_kernel_density(x_max=1., bandwidth=0.005)
+
+
+class WordRatio(Extractor):
+
+    def __init__(self, conf):
+        Extractor.__init__(self, conf)
+
+    def get_class_name(self):
+        return '{}_3'.format(title2underline(self.__class__.__name__))
+
+    def get_feature_size(self):
+        return 1
+
+    def extract_row(self, row):
+        content = row['内容']
+        words = [word.encode('utf-8') for word in list(jieba.cut(content)) if len(word) > 1]
+
+        content_len = len(content)
+        words_len = sum([len(word) for word in words])
+
+        return [(1. * words_len / content_len) if content_len > 0 else 0.]
+
+    def test(self):
+        self.extract_test(line_id=18772)
+
+    def visual(self):
+        self.draw_hist(x_max=1.)
+        self.draw_kernel_density(x_max=1., bandwidth=0.005)

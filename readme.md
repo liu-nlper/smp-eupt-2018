@@ -10,6 +10,7 @@
 -   [Usage](#usage)
 -   [Analysis](#analysis)
 -   [Visualization](#visual)
+-   [Special Case](#case)
 -   [Experiment](#exp)
 
 ****
@@ -116,14 +117,23 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 ****
 
+##	<a name="case"> Special Case </a>
+
+| ID    | 标签          |
+| ----  | ----         |
+| 18772 | 机器翻译      |
+
+****
+
 ##	<a name="exp"> Experiment </a>
 
 | Version               | Online    | Offline   | Note                      |
 | ----                  | ------    | -------   | ----                      |
-| v007                  | ------    | 0.91316   | add char_set_ratio        |
-| v006                  | ------    | 0.90949   | add english_char_ratio    |
-| v005                  | ------    | 0.90112   | add digit_char_ratio      |
-| v004                  | ------    | 0.89020   | add chinese_char_ratio    |
-| v003                  | ------    | 0.85419   | add word_set_num          |
-| v002                  | ------    | 0.80656   | add word_num              |
-| v001                  | ------    | 0.79878   | add content_length        |
+| v008                  | ------    | 0.91839   | add word_ratio_3          |
+| v007                  | ------    | 0.91387   | add char_set_ratio        |
+| v006                  | ------    | 0.91188   | add english_char_ratio    |
+| v005                  | ------    | 0.90359   | add digit_char_ratio      |
+| v004                  | ------    | 0.89415   | add chinese_char_ratio    |
+| v003                  | ------    | 0.85627   | add word_set_num          |
+| v002                  | ------    | 0.81059   | add word_num              |
+| v001                  | ------    | 0.80358   | add content_length        |

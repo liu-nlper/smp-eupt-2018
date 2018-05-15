@@ -48,3 +48,10 @@
     <img src="/img/char_set_ratio_hist.png" height="300px" />
     <img src="/img/char_set_ratio_kde.png" height="300px" />
 </div>
+
+### Word Ratio
+
+<div align="center">
+    <img src="/img/word_ratio_3_hist.png" height="300px" />
+    <img src="/img/word_ratio_3_kde.png" height="300px" />
+</div>

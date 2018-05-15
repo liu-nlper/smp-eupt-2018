@@ -61,6 +61,15 @@ class Extractor(Base):
         feat_file.close()
         logging.info('Save feature done [name={}] [path={}]'.format(self.feature_name, feat_file_path))
 
+    def extract_test(self, data_name='raw', data_type='train', line_id=0):
+        with open('{}/{}.{}.csv'.format(self.conf.get('PATH', 'raw'), data_name, data_type)) as csvfile:
+            reader = csv.DictReader(csvfile)
+            line_num = 0
+            for row in reader:
+                if line_num == line_id:
+                    self.extract_row(row)
+                line_num += 1
+
     def load_draw_data(self, f_id=0, data_name='raw', data_type='train'):
         raw_path = self.conf.get('PATH', 'raw')
         feature_path = self.conf.get('PATH', 'feature')
@@ -123,6 +132,9 @@ class Extractor(Base):
 
     def run(self):
         self.extract()
+
+    def test(self):
+        assert False, 'Please override function: Extractor.test'
 
     def visual(self):
         assert False, 'Please override function: Extractor.visual'
