@@ -117,12 +117,20 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
     <img src="img/chinese_char_ratio_kde.png" height="300px" />
 </div>
 
+### Digit Char Ratio
+
+<div align="center">
+    <img src="img/digit_char_ratio_hist.png" height="300px" />
+    <img src="img/digit_char_ratio_kde.png" height="300px" />
+</div>
+
 ****
 
 ##	<a name="exp"> Experiment </a>
 
 | Version               | Online    | Offline   | Note                      |
 | ----                  | ------    | -------   | ----                      |
+| v005                  | ------    | -------   | add digit_char_ratio      |
 | v004                  | ------    | 0.89020   | add chinese_char_ratio    |
 | v003                  | ------    | 0.85419   | add word_set_num          |
 | v002                  | ------    | 0.80656   | add word_num              |

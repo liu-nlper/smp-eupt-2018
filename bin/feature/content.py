@@ -8,7 +8,7 @@ import csv
 import sys
 import jieba
 from bin.feature.extractor import Extractor
-from bin.featwheel.string import title2underline, cal_cn_ratio
+from bin.featwheel.string import title2underline, cal_cn_ratio, cal_digit_ratio
 
 csv.field_size_limit(sys.maxsize)
 
@@ -87,3 +87,20 @@ class ChineseCharRatio(Extractor):
     def visual(self):
         self.draw_hist(x_max=1.)
         self.draw_kernel_density(x_max=1., bandwidth=0.005)
+
+
+class DigitCharRatio(Extractor):
+
+    def __init__(self, conf):
+        Extractor.__init__(self, conf)
+
+    def get_feature_size(self):
+        return 1
+
+    def extract_row(self, row):
+        content = row['内容']
+        return [cal_digit_ratio(content)]
+
+    def visual(self):
+        self.draw_hist(x_max=.3)
+        self.draw_kernel_density(x_max=0.3, bandwidth=0.005)

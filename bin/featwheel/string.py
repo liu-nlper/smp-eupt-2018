@@ -44,6 +44,31 @@ def test_cal_cn_ratio():
     assert cal_cn_ratio(s) == 3. / 4.
 
 
+def cal_digit_ratio(s):
+    d_num = 0
+    all_num = 0
+    for c in s.decode('utf-8'):
+        if u'\u0030' <= c <= u'\u0039':
+            d_num += 1
+        all_num += 1
+    return 1. * d_num / all_num if all_num > 0 else 0.
+
+
+def test_cal_digit_ratio():
+    s = '123是'
+    assert cal_digit_ratio(s) == 3. / 4.
+
+    s = '123$'
+    assert cal_digit_ratio(s) == 3. / 4.
+
+    s = '0123456789a'
+    assert cal_digit_ratio(s) == 10. / 11.
+
+    s = '0123456789；'
+    assert cal_digit_ratio(s) == 10. / 11.
+
+
 if __name__ == '__main__':
     test_title2underline()
     test_cal_cn_ratio()
+    test_cal_digit_ratio()
