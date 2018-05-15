@@ -96,20 +96,6 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
     <img src="img/content_length_kde.png" height="300px" />
 </div>
 
-### Word Number
-
-<div align="center">
-    <img src="img/word_num_hist.png" height="300px" />
-    <img src="img/word_num_kde.png" height="300px" />
-</div>
-
-### Word Set Number
-
-<div align="center">
-    <img src="img/word_set_num_3_hist.png" height="300px" />
-    <img src="img/word_set_num_3_kde.png" height="300px" />
-</div>
-
 ### Chinese Char Ratio
 
 <div align="center">
@@ -124,12 +110,15 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
     <img src="img/digit_char_ratio_kde.png" height="300px" />
 </div>
 
+> More visual graphs for features can be found [here](doc/visual.md).
+
 ****
 
 ##	<a name="exp"> Experiment </a>
 
 | Version               | Online    | Offline   | Note                      |
 | ----                  | ------    | -------   | ----                      |
+| v006                  | ------    | 0.-----   | add english_char_ratio    |
 | v005                  | ------    | 0.90112   | add digit_char_ratio      |
 | v004                  | ------    | 0.89020   | add chinese_char_ratio    |
 | v003                  | ------    | 0.85419   | add word_set_num          |

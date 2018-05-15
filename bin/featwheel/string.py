@@ -68,7 +68,23 @@ def test_cal_digit_ratio():
     assert cal_digit_ratio(s) == 10. / 11.
 
 
+def cal_en_ratio(s):
+    en_num = 0
+    all_num = 0
+    for c in s.decode('utf-8'):
+        if u'\u0041' <= c <= u'\u005a' or u'\u0061' <= c <= u'\u007a':
+            en_num += 1
+        all_num += 1
+    return 1. * en_num / all_num if all_num > 0 else 0.
+
+
+def test_cal_en_ratio():
+    s = '123azAZ'
+    assert cal_en_ratio(s) == 4. / 7.
+
+
 if __name__ == '__main__':
     test_title2underline()
     test_cal_cn_ratio()
     test_cal_digit_ratio()
+    test_cal_en_ratio()
