@@ -59,8 +59,13 @@ class SingleRun(Runner):
         write_csv(file_name, data_preds)
 
     def run_offline(self, cv_id=-1, cv_num=-1):
-        self.params['cv_id'] = cv_id
-        self.params['cv_num'] = cv_num
+        if cv_id != self.params['cv_id']:
+            logging.info('Reset cv_id={}, previous cv_id={}'.format(cv_id, self.params['cv_id']))
+            self.params['cv_id'] = cv_id
+        if cv_num != self.params['cv_num']:
+            logging.info('Reset cv_num={}, previous cv_num={}'.format(cv_num, self.params['cv_num']))
+            self.params['cv_num'] = cv_num
+
         # load feature
         f_vecs = load_all(self.conf.get('PATH', 'feature'),
                           self.conf.get(self.get_section_name(), 'feature').split(),

@@ -130,7 +130,7 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 | Version               | Online    | Offline   | Note                      |
 | ----                  | ------    | -------   | ----                      |
-| v005                  | ------    | -------   | add digit_char_ratio      |
+| v005                  | ------    | 0.90112   | add digit_char_ratio      |
 | v004                  | ------    | 0.89020   | add chinese_char_ratio    |
 | v003                  | ------    | 0.85419   | add word_set_num          |
 | v002                  | ------    | 0.80656   | add word_num              |
