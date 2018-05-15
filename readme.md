@@ -89,6 +89,8 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 ##	<a name="visual"> Visualization </a>
 
+**More visual graphs** for features can be found [here](doc/visual.md).
+
 ### Content Length
 
 <div align="center">
@@ -110,7 +112,7 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
     <img src="/img/char_set_ratio_kde.png" height="300px" />
 </div>
 
-**More visual graphs** for features can be found [here](doc/visual.md).
+> Some interesting discoveries, the distribution of *human author* is more natural while other authors have *biases*. If we can eliminate these biases in the model (such as translation model), can we make the model more effective? 
 
 ****
 
