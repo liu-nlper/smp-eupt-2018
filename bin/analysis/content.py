@@ -79,3 +79,20 @@ class LastChar(Analyzer):
         for ins in vecs:
             last_chs.add(ins['last_ch'])
         print('|-|'.join(last_chs))
+
+
+class DontContainWordLocation(Analyzer):
+
+    def __init__(self, conf):
+        Analyzer.__init__(self, conf)
+
+    def analyze_row(self, row):
+        ins = dict()
+        ins['content'] = row['内容'] if '地址' not in row['内容'] and row['标签'] == '机器作者' else None
+        return ins
+
+    def aggregate(self, vecs):
+        for ins in vecs:
+            if ins['content']:
+                print(ins['content'])
+                print('\n')

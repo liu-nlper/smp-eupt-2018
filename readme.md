@@ -127,14 +127,15 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 ##	<a name="exp"> Experiment </a>
 
-| Version   | Base Version  | Online    | Offline       | Note                                      |
-| ----      | ----          | ------    | -------       | ----                                      |
-| v014      | v013          | ------    | 0.95988       | add last_char_is_chinese                  |
-| v013      | v011          | ------    | 0.95897       | add last_char_is_dot                      |
-| ~~v012~~  | ~~v009~~      | ------    | ~~0.94145~~   | ~~add space_ratio~~                       |
-| v011      | v010          | ------    | 0.94155       | add space_ratio                           |
-| v010      | v009          | ------    | 0.94150       | add space_num                             |
-| v009      | v008          | ------    | 0.93625       | add ave_chinese_continuous_length         |
+| Version   | Base Version  | Online    | Offline       | Note                                              |
+| ----      | ----          | ------    | -------       | ----                                              |
+| v015      | v014          | ------    | 0.95990       | add contain_word_location (consider delete it)    |
+| v014      | v013          | ------    | 0.95988       | add last_char_is_chinese                          |
+| v013      | v011          | ------    | 0.95897       | add last_char_is_dot                              |
+| ~~v012~~  | ~~v009~~      | ------    | ~~0.94145~~   | ~~add space_ratio~~                               |
+| v011      | v010          | ------    | 0.94155       | add space_ratio                                   |
+| v010      | v009          | ------    | 0.94150       | add space_num                                     |
+| v009      | v008          | ------    | 0.93625       | add ave_chinese_continuous_length                 |
 | v008      | v007          | ------    | 0.92077       | add word_ratio_3                          |    
 | v007      | v006          | ------    | 0.91387       | add char_set_ratio                        |
 | v006      | v005          | ------    | 0.91188       | add english_char_ratio                    |   

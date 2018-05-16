@@ -90,3 +90,10 @@
     <img src="/img/last_char_is_chinese_hist.png" height="300px" />
     <img src="/img/last_char_is_chinese_kde.png" height="300px" />
 </div>
+
+### Contain Word Location
+
+<div align="center">
+    <img src="/img/contain_word_location_hist.png" height="300px" />
+    <img src="/img/contain_word_location_kde.png" height="300px" />
+</div>

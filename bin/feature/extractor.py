@@ -108,7 +108,7 @@ class Extractor(Base):
                             f_id=0,
                             x_min=0.,
                             x_max=2000.,
-                            bin_num=200.,
+                            bin_num=200,
                             data_name='raw',
                             data_type='train',
                             bandwidth=0.5):
