@@ -8,7 +8,7 @@ import csv
 import sys
 import jieba
 from bin.feature.extractor import Extractor
-from bin.featwheel.string import title2underline, cal_cn_ratio, cal_digit_ratio, cal_en_ratio
+import bin.featwheel.string as string
 
 csv.field_size_limit(sys.maxsize)
 
@@ -53,7 +53,7 @@ class WordSetNum(Extractor):
         Extractor.__init__(self, conf)
 
     def get_class_name(self):
-        return '{}_3'.format(title2underline(self.__class__.__name__))
+        return '{}_3'.format(string.title2underline(self.__class__.__name__))
 
     def get_feature_size(self):
         return 1
@@ -82,7 +82,7 @@ class ChineseCharRatio(Extractor):
 
     def extract_row(self, row):
         content = row['内容']
-        return [cal_cn_ratio(content)]
+        return [string.cal_cn_ratio(content)]
 
     def visual(self):
         self.draw_hist(x_max=1.)
@@ -99,7 +99,7 @@ class DigitCharRatio(Extractor):
 
     def extract_row(self, row):
         content = row['内容']
-        return [cal_digit_ratio(content)]
+        return [string.cal_digit_ratio(content)]
 
     def visual(self):
         self.draw_hist(x_max=.3)
@@ -116,7 +116,7 @@ class EnglishCharRatio(Extractor):
 
     def extract_row(self, row):
         content = row['内容']
-        return [cal_en_ratio(content)]
+        return [string.cal_en_ratio(content)]
 
     def visual(self):
         self.draw_hist(x_max=.2)
@@ -145,7 +145,7 @@ class WordRatio(Extractor):
         Extractor.__init__(self, conf)
 
     def get_class_name(self):
-        return '{}_3'.format(title2underline(self.__class__.__name__))
+        return '{}_3'.format(string.title2underline(self.__class__.__name__))
 
     def get_feature_size(self):
         return 1
@@ -165,3 +165,62 @@ class WordRatio(Extractor):
     def visual(self):
         self.draw_hist(x_max=1.)
         self.draw_kernel_density(x_max=1., bandwidth=0.005)
+
+
+class AveChineseContinuousLength(Extractor):
+
+    def __init__(self, conf):
+        Extractor.__init__(self, conf)
+
+    def get_feature_size(self):
+        return 1
+
+    def extract_row(self, row):
+        content = row['内容']
+        return [string.ave_continuous_cn_length(content)]
+
+    def visual(self):
+        self.draw_hist(x_max=30.)
+        self.draw_kernel_density(x_max=30., bandwidth=0.2)
+
+
+class SpaceNum(Extractor):
+
+    def __init__(self, conf):
+        Extractor.__init__(self, conf)
+
+    def get_feature_size(self):
+        return 1
+
+    def extract_row(self, row):
+        content = row['内容']
+        space_num = 0
+        for c in content.decode('utf-8'):
+            if c == ' ':
+                space_num += 1
+        return [space_num]
+
+    def visual(self):
+        self.draw_hist(x_max=100., bin_num=100)
+        self.draw_kernel_density(x_max=100., bandwidth=0.5)
+
+
+class SpaceRatio(Extractor):
+
+    def __init__(self, conf):
+        Extractor.__init__(self, conf)
+
+    def get_feature_size(self):
+        return 1
+
+    def extract_row(self, row):
+        content = row['内容'].decode('utf-8')
+        space_num = 0
+        for c in content:
+            if c == ' ':
+                space_num += 1
+        return [1. * space_num / len(content) if len(content) > 0 else 0.]
+
+    def visual(self):
+        self.draw_hist(x_max=0.06)
+        self.draw_kernel_density(x_max=0.06, bandwidth=0.0005)

@@ -16,11 +16,6 @@ class XGB(Model):
     def __init__(self, conf):
         Model.__init__(self, conf)
 
-    @staticmethod
-    def ave_f1(preds, dmatrix):
-        labels = dmatrix.get_label()
-        return 'ave_f1', eval_ave_f1(labels, preds, 4, False)['ave_f1']
-
     def fit(self, data, cv_id, cv_num):
         train_dmatrix = xgb.DMatrix(data['train_f_vecs'], label=data['train_labels'])
         valid_dmatrix = xgb.DMatrix(data['valid_f_vecs'], label=data['valid_labels'])
@@ -33,7 +28,7 @@ class XGB(Model):
                                watchlist,
                                early_stopping_rounds=self.params['early_stop'],
                                verbose_eval=self.params['verbose_eval'])
-        logging.info('[best_ntree_limit={}]'.format(self.model.best_ntree_limit))
+        logging.info('[best_ntree_limit_{}_{}={}]'.format(cv_id, cv_num, self.model.best_ntree_limit))
 
         valid_preds = self.model.predict(valid_dmatrix, ntree_limit=self.model.best_ntree_limit)
         self.params['best_ntree_limit_{}_{}'.format(cv_id, cv_num)] = self.model.best_ntree_limit

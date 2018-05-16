@@ -55,3 +55,24 @@
     <img src="/img/word_ratio_3_hist.png" height="300px" />
     <img src="/img/word_ratio_3_kde.png" height="300px" />
 </div>
+
+### Average Chinese Continuous Length
+
+<div align="center">
+    <img src="/img/ave_chinese_continuous_length_hist.png" height="300px" />
+    <img src="/img/ave_chinese_continuous_length_kde.png" height="300px" />
+</div>
+
+### Space Num
+
+<div align="center">
+    <img src="/img/space_num_hist.png" height="300px" />
+    <img src="/img/space_num_kde.png" height="300px" />
+</div>
+
+### Space Ratio
+
+<div align="center">
+    <img src="/img/space_ratio_hist.png" height="300px" />
+    <img src="/img/space_ratio_kde.png" height="300px" />
+</div>

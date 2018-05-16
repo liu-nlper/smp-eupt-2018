@@ -20,11 +20,15 @@ def test_title2underline():
     assert title2underline('ContentLength') == 'content_length'
 
 
+def is_cn(c):
+    return u'\u4e00' <= c <= u'\u9fff'
+
+
 def cal_cn_ratio(s):
     cn_num = 0
     all_num = 0
     for c in s.decode('utf-8'):
-        if u'\u4e00' <= c <= u'\u9fff':
+        if is_cn(c):
             cn_num += 1
         all_num += 1
     return 1. * cn_num / all_num if all_num > 0 else 0.
@@ -83,8 +87,32 @@ def test_cal_en_ratio():
     assert cal_en_ratio(s) == 4. / 7.
 
 
+def ave_continuous_cn_length(s):
+    len_sum = 0
+    len_num = 0
+    l = 0
+    for c in s.decode('utf-8'):
+        if is_cn(c):
+            l += 1
+        else:
+            if l > 0:
+                len_sum += l
+                len_num += 1
+            l = 0
+    if l > 0:
+        len_sum += l
+        len_num += 1
+    return 1. * len_sum / len_num if len_num > 0 else 0.
+
+
+def test_ave_continuous_cn_length():
+    s = '$我爱你123哈哈、a我们'
+    assert ave_continuous_cn_length(s) == 1. * (3 + 2 + 2) / 3
+
+
 if __name__ == '__main__':
     test_title2underline()
     test_cal_cn_ratio()
     test_cal_digit_ratio()
     test_cal_en_ratio()
+    test_ave_continuous_cn_length()

@@ -119,7 +119,7 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 ##	<a name="case"> Special Case </a>
 
-| ID    | 标签          |
+| ID    | 标签         |
 | ----  | ----         |
 | 18772 | 机器翻译      |
 
@@ -127,13 +127,17 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 ##	<a name="exp"> Experiment </a>
 
-| Version               | Online    | Offline   | Note                      |
-| ----                  | ------    | -------   | ----                      |
-| v008                  | ------    | 0.91839   | add word_ratio_3          |
-| v007                  | ------    | 0.91387   | add char_set_ratio        |
-| v006                  | ------    | 0.91188   | add english_char_ratio    |
-| v005                  | ------    | 0.90359   | add digit_char_ratio      |
-| v004                  | ------    | 0.89415   | add chinese_char_ratio    |
-| v003                  | ------    | 0.85627   | add word_set_num          |
-| v002                  | ------    | 0.81059   | add word_num              |
-| v001                  | ------    | 0.80358   | add content_length        |
+| Version   | Base Version  | Online    | Offline       | Note                                      |
+| ----      | ----          | ------    | -------       | ----                                      |
+| ~~v012~~  | ~~v009~~      | ------    | ~~0.94145~~   | ~~add space_ratio~~                       |
+| v011      | v010          | ------    | 0.94155       | add space_ratio                           |
+| v010      | v009          | ------    | 0.94150       | add space_num                             |
+| v009      | v008          | ------    | 0.93625       | add ave_chinese_continuous_length         |
+| v008      | v007          | ------    | 0.92077       | add word_ratio_3                          |    
+| v007      | v006          | ------    | 0.91387       | add char_set_ratio                        |
+| v006      | v005          | ------    | 0.91188       | add english_char_ratio                    |   
+| v005      | v004          | ------    | 0.90359       | add digit_char_ratio                      |
+| v004      | v003          | ------    | 0.89415       | add chinese_char_ratio                    |
+| v003      | v002          | ------    | 0.85627       | add word_set_num                          |
+| v002      | v001          | ------    | 0.81059       | add word_num                              |
+| v001      | v000          | ------    | 0.80358       | add content_length                        |
