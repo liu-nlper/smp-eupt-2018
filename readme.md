@@ -128,7 +128,7 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 ##	<a name="brain-storm"> Brain Storm </a>
 
-1. Some special char: '报', '电'.
+1. Some special chars: '报', '电' (in Version#016). We can select topK chars or words which has the highest 'metric' (such as entropy or negative entropy) to reconstruct content.
 
 ****
 
@@ -136,7 +136,8 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 | Version   | Base Version  | Online    | Offline       | Note                                              |
 | ----      | ----          | ------    | -------       | ----                                              |
-| v015      | v014          | ------    | 0.95990       | add contain_word_location (may delete it)    |
+| v016      | v015          | ------    | 0.96226       | add contain_char_dian & contain_char_bao          |
+| v015      | v014          | ------    | 0.95990       | add contain_word_location (may delete it)         |
 | v014      | v013          | ------    | 0.95988       | add last_char_is_chinese                          |
 | v013      | v011          | ------    | 0.95897       | add last_char_is_dot                              |
 | ~~v012~~  | ~~v009~~      | ------    | ~~0.94145~~   | ~~add space_ratio~~                               |
