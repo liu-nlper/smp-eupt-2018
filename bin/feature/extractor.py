@@ -87,7 +87,7 @@ class Extractor(Base):
             data[label].append(c_len)
         return data
 
-    def draw_hist(self, f_id=0, x_min=0, x_max=2000, bin_num=200, data_name='raw', data_type='train'):
+    def draw_hist(self, f_id=0, x_min=0., x_max=2000., bin_num=200., data_name='raw', data_type='train'):
         data = self.load_draw_data(f_id=f_id, data_name=data_name, data_type=data_type)
 
         bins = np.arange(x_min, x_max, x_max / bin_num)
@@ -106,9 +106,9 @@ class Extractor(Base):
 
     def draw_kernel_density(self,
                             f_id=0,
-                            x_min=0,
-                            x_max=2000,
-                            bin_num=200,
+                            x_min=0.,
+                            x_max=2000.,
+                            bin_num=200.,
                             data_name='raw',
                             data_type='train',
                             bandwidth=0.5):

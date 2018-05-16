@@ -224,3 +224,39 @@ class SpaceRatio(Extractor):
     def visual(self):
         self.draw_hist(x_max=0.06)
         self.draw_kernel_density(x_max=0.06, bandwidth=0.0005)
+
+
+class LastCharIsDot(Extractor):
+
+    def __init__(self, conf):
+        Extractor.__init__(self, conf)
+
+    def get_feature_size(self):
+        return 1
+
+    def extract_row(self, row):
+        content = row['内容'].decode('utf-8')
+        last_ch = content[-1] if len(content) > 0 else '#_#'
+        return [1. if last_ch == '。'.decode('utf-8') else 0.]
+
+    def visual(self):
+        self.draw_hist(x_max=2., bin_num=4)
+        self.draw_kernel_density(x_max=1., bandwidth=0.2)
+
+
+class LastCharIsChinese(Extractor):
+
+    def __init__(self, conf):
+        Extractor.__init__(self, conf)
+
+    def get_feature_size(self):
+        return 1
+
+    def extract_row(self, row):
+        content = row['内容'].decode('utf-8')
+        last_ch = content[-1] if len(content) > 0 else None
+        return [1. if (last_ch and string.is_cn(last_ch)) else 0.]
+
+    def visual(self):
+        self.draw_hist(x_max=2., bin_num=4)
+        self.draw_kernel_density(x_max=1., bandwidth=0.2)

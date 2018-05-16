@@ -76,3 +76,17 @@
     <img src="/img/space_ratio_hist.png" height="300px" />
     <img src="/img/space_ratio_kde.png" height="300px" />
 </div>
+
+### Last Char Is Dot
+
+<div align="center">
+    <img src="/img/last_char_is_dot_hist.png" height="300px" />
+    <img src="/img/last_char_is_dot_kde.png" height="300px" />
+</div>
+
+### Last Char Is Chinese
+
+<div align="center">
+    <img src="/img/last_char_is_chinese_hist.png" height="300px" />
+    <img src="/img/last_char_is_chinese_kde.png" height="300px" />
+</div>

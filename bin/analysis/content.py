@@ -61,3 +61,21 @@ class ContentLenDistribution(Analyzer):
                                                                     np.min(data[label]),
                                                                     np.median(data[label]),
                                                                     np.average(data[label])))
+
+
+class LastChar(Analyzer):
+
+    def __init__(self, conf):
+        Analyzer.__init__(self, conf)
+
+    def analyze_row(self, row):
+        ins = dict()
+        last_ch = row['内容'].decode('utf-8')[-1] if len(row['内容']) > 0 else '#_#'
+        ins['last_ch'] = last_ch.encode('utf-8')
+        return ins
+
+    def aggregate(self, vecs):
+        last_chs = set()
+        for ins in vecs:
+            last_chs.add(ins['last_ch'])
+        print('|-|'.join(last_chs))
