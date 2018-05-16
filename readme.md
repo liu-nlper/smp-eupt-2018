@@ -129,7 +129,7 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 | Version   | Base Version  | Online    | Offline       | Note                                              |
 | ----      | ----          | ------    | -------       | ----                                              |
-| v015      | v014          | ------    | 0.95990       | add contain_word_location (consider delete it)    |
+| v015      | v014          | ------    | 0.95990       | add contain_word_location (may delete it)    |
 | v014      | v013          | ------    | 0.95988       | add last_char_is_chinese                          |
 | v013      | v011          | ------    | 0.95897       | add last_char_is_dot                              |
 | ~~v012~~  | ~~v009~~      | ------    | ~~0.94145~~   | ~~add space_ratio~~                               |
