@@ -11,6 +11,7 @@
 -   [Analysis](#analysis)
 -   [Visualization](#visual)
 -   [Special Case](#case)
+-   [Brain Storm](#brain-storm)
 -   [Experiment](#exp)
 
 ****
@@ -122,6 +123,12 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 | ID    | 标签         |
 | ----  | ----         |
 | 18772 | 机器翻译      |
+
+****
+
+##	<a name="brain-storm"> Brain Storm </a>
+
+1. Some special char: '报', '电'.
 
 ****
 
