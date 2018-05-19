@@ -97,3 +97,15 @@
     <img src="/img/contain_word_location_hist.png" height="300px" />
     <img src="/img/contain_word_location_kde.png" height="300px" />
 </div>
+
+### Char Probability Normalization
+
+<div align="center">
+    <img src="/img/char_probability_normalization_l0_hist.png" height="300px" />
+    <img src="/img/char_probability_normalization_l1_hist.png" height="300px" />
+</div>
+
+<div align="center">
+    <img src="/img/char_probability_normalization_l2_hist.png" height="300px" />
+    <img src="/img/char_probability_normalization_l3_hist.png" height="300px" />
+</div>
