@@ -85,3 +85,30 @@ def read_csv(file_name):
                     data[key] = [row[key]]
         logging.info('read csv done [{}]'.format(file_name))
     return data
+
+
+def csv2dict(data, key):
+    data_dict = dict()
+    data_len = len(data[data.keys()[0]])
+    for data_id in range(data_len):
+        data_dict[data[key][data_id]] = dict()
+        for field_name in data:
+            if field_name == key:
+                continue
+            else:
+                data_dict[data[key][data_id]][field_name] = data[field_name][data_id]
+    return data_dict
+
+
+def csv2dict_test():
+    data = {'f1': [1, 2], 'f2': [3, 4], 'f3': [5, 6]}
+    data_dict = csv2dict(data, key='f1')
+
+    assert data_dict == {1: {'f2': 3,
+                             'f3': 5},
+                         2: {'f2': 4,
+                             'f3': 6}}
+
+
+if __name__ == '__main__':
+    csv2dict_test()

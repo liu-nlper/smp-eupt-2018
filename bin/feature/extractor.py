@@ -17,8 +17,8 @@ from bin.analysis.label import Label
 
 class Extractor(Base):
 
-    def __init__(self, conf):
-        Base.__init__(self, conf)
+    def __init__(self, conf, enable_params=False):
+        Base.__init__(self, conf, enable_params=enable_params)
         # set feature name
         self.feature_name = self.get_class_name()
         # load data
@@ -74,7 +74,7 @@ class Extractor(Base):
         raw_path = self.conf.get('PATH', 'raw')
         feature_path = self.conf.get('PATH', 'feature')
 
-        f_name = '%s/%s.%s.smat' % (feature_path, self.get_class_name(), data_type)
+        f_name = '%s/%s.%s.smat' % (feature_path, self.feature_name, data_type)
         f_vecs = load(f_name).toarray()
 
         labels = read_csv('{}/{}.{}.csv'.format(raw_path, data_name, data_type))['标签']

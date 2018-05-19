@@ -23,9 +23,11 @@ class Base(object):
     def run(self):
         assert False, 'Please override Base.run'
 
-    @staticmethod
-    def get_section_name():
+    def get_section_name(self):
         assert False, 'Please override Base.get_section_name'
 
     def get_class_name(self):
+        """
+        Provides names of params.
+        """
         return title2underline(self.__class__.__name__)
