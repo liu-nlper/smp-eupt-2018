@@ -141,6 +141,7 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 | Version   | Base Version  | Online    | Offline       | Note                                              |
 | ----      | ----          | ------    | -------       | ----                                              |
+| v017      | v016          | ------    | 0.96646       | add char_entropy_summary & char_entropy_average   |
 | v016      | v015          | ------    | 0.96226       | add contain_char_dian & contain_char_bao          |
 | v015      | v014          | ------    | 0.95990       | add contain_word_location (may delete it)         |
 | v014      | v013          | ------    | 0.95988       | add last_char_is_chinese                          |
