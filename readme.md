@@ -141,6 +141,8 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 | Version   | Base Version  | Online    | Offline       | Note                                              |
 | ----      | ----          | ------    | -------       | ----                                              |
+| v021      | v020          | ------    | 0.98571       | add features about 2gram_probability              |
+| v020      | v019          | ------    | 0.97743       | add 2gram_entropy_summary & 2gram_entropy_average |
 | v019      | v018          | ------    | 0.97556       | add char_probability_normalization                |
 | v018      | v017          | ------    | 0.97490       | add char_probability_summary & char_probability_average   |
 | v017      | v016          | ------    | 0.96646       | add char_entropy_summary & char_entropy_average   |

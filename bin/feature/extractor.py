@@ -25,6 +25,10 @@ class Extractor(Base):
     def load_pre_data(self):
         return {}
 
+    @staticmethod
+    def get_config_section_name():
+        return 'EXTRACTOR'
+
     def extract_row(self, row):
         assert False, 'Please override function: Extractor.extract_row'
 
