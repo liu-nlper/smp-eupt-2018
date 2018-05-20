@@ -14,8 +14,8 @@ class Base(object):
         self.conf = conf
 
         if enable_params:
-            self.params = eval(self.conf.get(self.get_section_name(),
-                                             self.get_class_name()))
+            self.params = eval(self.conf.get(self.get_config_section_name(),
+                                             self.get_config_field_name()))
             logging.info('[name={}] [params={}]'.format(self.__class__.__name__, self.params))
         else:
             self.params = {}
@@ -23,11 +23,12 @@ class Base(object):
     def run(self):
         assert False, 'Please override Base.run'
 
-    def get_section_name(self):
-        assert False, 'Please override Base.get_section_name'
+    @staticmethod
+    def get_config_section_name():
+        assert False, 'Please override Base.get_config_section_name'
 
-    def get_class_name(self):
-        """
-        Provides names of params.
-        """
+    def get_config_field_name(self):
+        return title2underline(self.__class__.__name__)
+
+    def get_date_name(self):
         return title2underline(self.__class__.__name__)

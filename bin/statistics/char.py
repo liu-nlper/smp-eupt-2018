@@ -38,7 +38,7 @@ class CharDF(Counter):
         for row in rows:
             for char_label in row:
                 chars.add(char_label[0])
-                data[char_label] = data.get(char_label, 0.) + 1.
+                data[char_label] = data.get(char_label, 0.) + row[char_label]
 
         csv_data = {'char': list()}
         for label_id in Label.cn2id.values():

@@ -32,8 +32,8 @@ class XGB(Model):
 
         valid_preds = self.model.predict(valid_dmatrix, ntree_limit=self.model.best_ntree_limit)
         self.params['best_ntree_limit_{}_{}'.format(cv_id, cv_num)] = self.model.best_ntree_limit
-        self.conf.set(self.get_section_name(),
-                      self.get_class_name(),
+        self.conf.set(self.get_config_section_name(),
+                      self.get_config_field_name(),
                       str(json.dumps(self.params, indent=4)))
         return valid_preds
 

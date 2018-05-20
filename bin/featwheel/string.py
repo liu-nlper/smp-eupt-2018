@@ -110,9 +110,27 @@ def test_ave_continuous_cn_length():
     assert ave_continuous_cn_length(s) == 1. * (3 + 2 + 2) / 3
 
 
+def ngram(s_utf8, n=2):
+    s = s_utf8.decode('utf-8')
+    words = list()
+    for i in range(len(s) - n + 1):
+        words.append(s[i: i + n].encode('utf-8'))
+    return words
+
+
+def test_ngram():
+    s = '我爱你我'
+    assert ngram(s, n=2) == ['我爱', '爱你', '你我']
+    s = '12我me'
+    assert ngram(s, n=2) == ['12', '2我', '我m', 'me']
+    s = '我爱你我'
+    assert ngram(s, n=3) == ['我爱你', '爱你我']
+
+
 if __name__ == '__main__':
     test_title2underline()
     test_cal_cn_ratio()
     test_cal_digit_ratio()
     test_cal_en_ratio()
     test_ave_continuous_cn_length()
+    test_ngram()

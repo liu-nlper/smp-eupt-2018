@@ -19,8 +19,6 @@ class Extractor(Base):
 
     def __init__(self, conf, enable_params=False):
         Base.__init__(self, conf, enable_params=enable_params)
-        # set feature name
-        self.feature_name = self.get_class_name()
         # load data
         self.pre_data = self.load_pre_data()
 
@@ -46,7 +44,7 @@ class Extractor(Base):
         feat_size = self.get_feature_size()
 
         feat_file_path = '{}/{}.{}.smat'.format(self.conf.get('PATH', 'feature'),
-                                                self.feature_name,
+                                                self.get_date_name(),
                                                 data_type)
         feat_file = open(feat_file_path, 'w')
         feat_file.write('{} {}\n'.format(data_size, feat_size))
@@ -59,7 +57,7 @@ class Extractor(Base):
                 save_vector(feat_file, vec)
 
         feat_file.close()
-        logging.info('Save feature done [name={}] [path={}]'.format(self.feature_name, feat_file_path))
+        logging.info('Save feature done [name={}] [path={}]'.format(self.get_date_name(), feat_file_path))
 
     def extract_test(self, data_name='raw', data_type='train', line_id=0):
         with open('{}/{}.{}.csv'.format(self.conf.get('PATH', 'raw'), data_name, data_type)) as csvfile:
@@ -74,7 +72,7 @@ class Extractor(Base):
         raw_path = self.conf.get('PATH', 'raw')
         feature_path = self.conf.get('PATH', 'feature')
 
-        f_name = '%s/%s.%s.smat' % (feature_path, self.feature_name, data_type)
+        f_name = '%s/%s.%s.smat' % (feature_path, self.get_date_name(), data_type)
         f_vecs = load(f_name).toarray()
 
         labels = read_csv('{}/{}.{}.csv'.format(raw_path, data_name, data_type))['标签']
@@ -96,8 +94,8 @@ class Extractor(Base):
             label_data = data[label]
             plt.hist(label_data, label=Label.cn2en[label], alpha=0.5, bins=bins)
 
-        plt.title('{} analysis'.format(self.get_class_name()))
-        plt.xlabel(self.get_class_name())
+        plt.title('{} analysis'.format(self.get_date_name()))
+        plt.xlabel(self.get_date_name())
         plt.ylabel('count')
 
         plt.tick_params(top='off', right='off')
@@ -122,8 +120,8 @@ class Extractor(Base):
             log_dens = kde.score_samples(bins)
             plt.plot(bins[:, 0], np.exp(log_dens), '-', label='{}'.format(Label.cn2en[label]))
 
-        plt.title('{} analysis'.format(self.get_class_name()))
-        plt.xlabel(self.get_class_name())
+        plt.title('{} analysis'.format(self.get_date_name()))
+        plt.xlabel(self.get_date_name())
         plt.ylabel('probability density')
 
         plt.tick_params(top='off', right='off')

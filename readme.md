@@ -131,7 +131,7 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 1. Some special chars: '报', '电' (in Version#016). We can select topK chars or words which has the highest 'metric' (such as entropy or negative entropy) to reconstruct content.
 2. Some ideas about FeatWheel:
     - **Workflow** is important to experiments (a DAG).
-    - **Diffing** between different versions is also important to experiments (diffing for features, diffing for params, etc.)
+    - **Diffing** between different versions is also important to experiments (diffing for features (distribution), diffing for params, etc.)
     - We don't need provide **cloud** to users, but only **framework** instead. Users can choose a local directory to store files.
     - **UI** is important.
 

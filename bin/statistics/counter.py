@@ -27,7 +27,7 @@ class Counter(Base):
             for row in reader:
                 rows.append(self.count_row(row))
         data = self.aggregate(rows)
-        file_name = '{}/{}.{}.csv'.format(self.conf.get('PATH', 'raw'), self.get_class_name(), data_type)
+        file_name = '{}/{}.{}.csv'.format(self.conf.get('PATH', 'raw'), self.get_date_name(), data_type)
         write_csv(file_name, data)
 
     def run(self):

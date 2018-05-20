@@ -19,7 +19,7 @@ class Runner(Base):
         self.save_conf()
 
     @staticmethod
-    def get_section_name():
+    def get_config_section_name():
         return 'EXPERIMENT'
 
     def __init_run_dir(self):
@@ -28,11 +28,11 @@ class Runner(Base):
 
         :return: the path of this experiment
         """
-        if self.conf.get(self.get_section_name(), 'tag') != '':
-            run_tag = self.conf.get(self.get_section_name(), 'tag')
+        if self.conf.get(self.get_config_section_name(), 'tag') != '':
+            run_tag = self.conf.get(self.get_config_section_name(), 'tag')
         else:
             run_tag = time.strftime("%Y-%m-%d_%H-%M-%S", time.localtime(time.time()))
-            self.conf.set(self.get_section_name(), 'tag', run_tag)
+            self.conf.set(self.get_config_section_name(), 'tag', run_tag)
 
             # generate experiment dir
             run_path = '%s/%s/' % (self.conf.get('PATH', 'out'), run_tag)

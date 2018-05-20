@@ -20,15 +20,15 @@ class Model(Base):
         self.model = None
 
     @staticmethod
-    def get_section_name():
+    def get_config_section_name():
         return 'MODEL'
 
-    def get_class_name(self):
-        return self.conf.get(self.get_section_name(), 'type')
+    def get_config_field_name(self):
+        return self.conf.get(self.get_config_section_name(), 'type')
 
     @staticmethod
     def new(conf):
-        model_type = ModelType(conf.get(Model.get_section_name(), 'type'))
+        model_type = ModelType(conf.get(Model.get_config_section_name(), 'type'))
         exec ("from %s import %s" % (model_type.value, model_type.name))
         return eval(model_type.name)(conf)
 

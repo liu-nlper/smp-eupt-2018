@@ -21,7 +21,7 @@ class SingleRun(Runner):
         Runner.__init__(self, conf)
 
     def load_index(self, cv_id, cv_num):
-        index_name = self.conf.get(self.get_section_name(), 'index_name')
+        index_name = self.conf.get(self.get_config_section_name(), 'index_name')
         index_path = self.conf.get('PATH', 'index')
 
         train_indexs = list()
@@ -68,7 +68,7 @@ class SingleRun(Runner):
 
         # load feature
         f_vecs = load_all(self.conf.get('PATH', 'feature'),
-                          self.conf.get(self.get_section_name(), 'feature').split(),
+                          self.conf.get(self.get_config_section_name(), 'feature').split(),
                           'train',
                           False)
         # load label
@@ -88,13 +88,13 @@ class SingleRun(Runner):
                                  'valid_f_vecs': valid_f_vecs},
                                 cv_id,
                                 cv_num)
-        self.save_valid_preds(valid_indexs, valid_preds, model.get_class_name(), cv_id, cv_num)
-        model.save('{}/{}_{}_{}.model'.format(self.run_path, model.get_class_name(), cv_id, cv_num))
+        self.save_valid_preds(valid_indexs, valid_preds, model.get_config_field_name(), cv_id, cv_num)
+        model.save('{}/{}_{}_{}.model'.format(self.run_path, model.get_config_field_name(), cv_id, cv_num))
 
         # evaluation
         score = ave_f1(valid_labels, valid_preds, 4, False)
         self.params['score'] = score
-        self.conf.set(self.get_section_name(), self.get_class_name(), str(json.dumps(self.params, indent=4)))
+        self.conf.set(self.get_config_section_name(), self.get_config_field_name(), str(json.dumps(self.params, indent=4)))
         logging.info('validation score [ave_f1={}]'.format(score['ave_f1']))
 
         # save config

@@ -28,7 +28,7 @@ class CrossValidation(Runner):
             score_sum += per_run.params['score'][eval_metric]
         score['ave_{}'.format(eval_metric)] = score_sum / cv_num
         self.params['score'] = score
-        self.conf.set(self.get_section_name(), self.get_class_name(), str(json.dumps(self.params, indent=4)))
+        self.conf.set(self.get_config_section_name(), self.get_config_field_name(), str(json.dumps(self.params, indent=4)))
         logging.info('validation score [ave_{}={}]'.format(eval_metric, score['ave_{}'.format(eval_metric)]))
 
         # save config
