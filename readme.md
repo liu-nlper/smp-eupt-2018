@@ -141,7 +141,7 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 
 | Version   | Base Version  | Online    | Offline       | Note                                              |
 | ----      | ----          | ------    | -------       | ----                                              |
-| v019      | v018          | ------    | 0.-----       | add char_probability_normalization                |
+| v019      | v018          | ------    | 0.97556       | add char_probability_normalization                |
 | v018      | v017          | ------    | 0.97490       | add char_probability_summary & char_probability_average   |
 | v017      | v016          | ------    | 0.96646       | add char_entropy_summary & char_entropy_average   |
 | v016      | v015          | ------    | 0.96226       | add contain_char_dian & contain_char_bao          |
