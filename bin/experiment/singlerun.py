@@ -113,18 +113,28 @@ class SingleRun(Runner):
         # save config
         self.save_conf()
 
-    def run_online(self):
-        cv_id = self.params['cv_id']
-        cv_num = self.params['cv_num']
+    def run_online(self, cv_id=-1, cv_num=-1):
+        if cv_id != self.params['cv_id']:
+            logging.info('Reset cv_id={}, previous cv_id={}'.format(cv_id, self.params['cv_id']))
+            self.params['cv_id'] = cv_id
+        if cv_num != self.params['cv_num']:
+            logging.info('Reset cv_num={}, previous cv_num={}'.format(cv_num, self.params['cv_num']))
+            self.params['cv_num'] = cv_num
         # load feature
         f_vecs = load_all(self.conf.get('PATH', 'feature'),
                           self.conf.get(self.get_config_section_name(), 'feature').split(),
                           'test',
                           False)
         # predict
+        if not self.model:
+            self.model = Model.new(self.conf)
+            self.model.load('{}/{}_{}_{}.model'.format(self.run_path,
+                                                       self.model.get_config_field_name(),
+                                                       cv_id,
+                                                       cv_num))
         preds = self.model.predict(f_vecs, cv_id, cv_num)
         self.save_preds(None, preds, self.model.get_config_field_name(), 'test', cv_id, cv_num)
 
     def run(self):
         self.run_offline(self.params['cv_id'], self.params['cv_num'])
-        self.run_online()
+        self.run_online(self.params['cv_id'], self.params['cv_num'])
