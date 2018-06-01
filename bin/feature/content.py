@@ -52,7 +52,7 @@ class WordSetNum(Extractor):
     def __init__(self, conf):
         Extractor.__init__(self, conf)
 
-    def get_class_name(self):
+    def get_date_name(self):
         return '{}_3'.format(string.title2underline(self.__class__.__name__))
 
     def get_feature_size(self):
@@ -144,7 +144,7 @@ class WordRatio(Extractor):
     def __init__(self, conf):
         Extractor.__init__(self, conf)
 
-    def get_class_name(self):
+    def get_date_name(self):
         return '{}_3'.format(string.title2underline(self.__class__.__name__))
 
     def get_feature_size(self):

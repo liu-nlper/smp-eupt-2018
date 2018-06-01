@@ -64,7 +64,7 @@ python -m bin.go --package bin.preprocess.normalize --object Json2CSV
 python -m bin.go --package bin.preprocess.normalize --object IndexGenerator 
 
 # Generate feature
-python -m bin.go --package bin.feature.statistics --object SentenceLength    
+python -m bin.go --package bin.feature.content --object ContentLength    
 
 # Feature visualization
 python -m bin.go --package bin.feature.content --object ContentLength --func visual 

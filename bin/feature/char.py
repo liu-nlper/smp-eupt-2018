@@ -18,9 +18,12 @@ class CharEntropy(Extractor):
 
     def __init__(self, conf):
         Extractor.__init__(self, conf, True)
-        self.feature_name = '{}_{}'.format(self.get_class_name(), self.params['min_doc_frequency'])
 
-    def get_section_name(self):
+    def get_date_name(self):
+        return '{}_{}'.format(self.get_config_field_name(), self.params['min_doc_frequency'])
+
+    @staticmethod
+    def get_config_section_name():
         return 'EXTRACTOR'
 
     def get_feature_size(self):
@@ -83,9 +86,12 @@ class CharProbability(Extractor):
 
     def __init__(self, conf):
         Extractor.__init__(self, conf, True)
-        self.feature_name = '{}_{}'.format(self.get_class_name(), self.params['min_doc_frequency'])
 
-    def get_section_name(self):
+    def get_date_name(self):
+        return '{}_{}'.format(self.get_config_field_name(), self.params['min_doc_frequency'])
+
+    @staticmethod
+    def get_config_section_name():
         return 'EXTRACTOR'
 
     def get_feature_size(self):

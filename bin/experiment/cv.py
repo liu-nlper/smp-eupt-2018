@@ -30,7 +30,7 @@ class CrossValidation(Runner):
             per_run = SingleRun(self.conf)
             per_run.run_offline(cv_id=cv_id, cv_num=cv_num)
             if enable_online:
-                per_run.run_online()
+                per_run.run_online(cv_id=cv_id, cv_num=cv_num)
             score['cv_{}_{}'.format(cv_id, cv_num)] = per_run.params['score']
             score_sum += per_run.params['score'][eval_metric]
         score['ave_{}'.format(eval_metric)] = score_sum / cv_num
@@ -81,6 +81,13 @@ class CrossValidation(Runner):
         for index_id in range(len(raw['id'])):
             out_file.write('{},{}\n'.format(out_merged['id'][index_id], out_merged['标签'][index_id]))
         out_file.close()
+
+    def run_online(self):
+        cv_num = self.params['cv_num']
+        for cv_id in range(cv_num):
+            per_run = SingleRun(self.conf)
+            per_run.run_online(cv_id=cv_id, cv_num=cv_num)
+        self.merge_outs()
 
     def run(self):
         enable_online = (self.params['enable_online'] == 'true')
