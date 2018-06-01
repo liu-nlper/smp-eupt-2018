@@ -87,7 +87,7 @@ class JiebaCutter(Base):
     def cut(self, data_type):
         raw_path = self.conf.get('PATH', 'raw')
         data = read_csv('{}/raw.{}.csv'.format(self.conf.get('PATH', 'raw'), data_type))
-        jieba_data = {'jieba': list(), '标签': data['标签']}
+        jieba_data = {'jieba': list(), '标签': data.get('标签', ['UNK'] * len(data['id']))}
         for content in data['内容']:
             words = list(jieba.cut(content))
             words = [word.encode('utf8') for word in words]
