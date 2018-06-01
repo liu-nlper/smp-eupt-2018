@@ -17,13 +17,17 @@ class Json2CSV(Base):
     def __init__(self, conf):
         Base.__init__(self, conf)
 
-    def run(self):
+    def run(self, data_type='train'):
         raw_path = self.conf.get('PATH', 'raw')
-        txt_path = '{}/train.txt'.format(raw_path)
+        txt_path = '{}/{}.txt'.format(raw_path, data_type)
         data = load_txt(txt_path)
 
-        csv_path = '{}/training.csv'.format(raw_path)
+        csv_path = '{}/{}.csv'.format(raw_path, data_type)
         write_csv(csv_path, data)
+
+    def run_all(self):
+        self.run('train')
+        self.run('test')
 
 
 class IndexGenerator(Base):

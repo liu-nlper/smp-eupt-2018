@@ -58,7 +58,7 @@ mkdir data/raw/
 python -m bin.go
 
 # Normalize data
-python -m bin.go --package bin.preprocess.normalize --object Json2CSV 
+python -m bin.go --package bin.preprocess.normalize --object Json2CSV --func run_all
 
 # Generate index
 python -m bin.go --package bin.preprocess.normalize --object IndexGenerator 
