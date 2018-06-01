@@ -63,7 +63,7 @@ class IndexGenerator(Base):
         return slices
 
     @staticmethod
-    def get_section_name():
+    def get_config_section_name():
         return 'PRE'
 
     def run(self):
