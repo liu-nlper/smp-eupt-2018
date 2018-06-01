@@ -133,7 +133,8 @@ class Extractor(Base):
         plt.show()
 
     def run(self):
-        self.extract()
+        self.extract(data_type='train')
+        self.extract(data_type='test')
 
     def test(self):
         assert False, 'Please override function: Extractor.test'
