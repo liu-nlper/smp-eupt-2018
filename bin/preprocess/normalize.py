@@ -84,12 +84,16 @@ class JiebaCutter(Base):
     def __init__(self, conf):
         Base.__init__(self, conf)
 
-    def run(self):
+    def cut(self, data_type):
         raw_path = self.conf.get('PATH', 'raw')
-        data = read_csv('{}/raw.train.csv'.format(self.conf.get('PATH', 'raw')))
+        data = read_csv('{}/raw.{}.csv'.format(self.conf.get('PATH', 'raw'), data_type))
         jieba_data = {'jieba': list(), '标签': data['标签']}
         for content in data['内容']:
             words = list(jieba.cut(content))
             words = [word.encode('utf8') for word in words]
             jieba_data['jieba'].append('#_#'.join(words))
-        write_csv('{}/{}.train.csv'.format(raw_path, self.get_class_name()), jieba_data)
+        write_csv('{}/{}.{}.csv'.format(raw_path, self.get_date_name(), data_type), jieba_data)
+
+    def run(self):
+        self.cut('train')
+        self.cut('test')
