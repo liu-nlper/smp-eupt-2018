@@ -18,6 +18,8 @@ class Runner(Base):
         self.run_path = self.__init_run_dir()
         self.save_conf()
 
+        self.model = None
+
     @staticmethod
     def get_config_section_name():
         return 'EXPERIMENT'

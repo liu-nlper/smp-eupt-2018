@@ -58,6 +58,19 @@ class SingleRun(Runner):
                                                   'valid')
         write_csv(file_name, data_preds)
 
+    def save_preds(self, indexs, preds, model_name, data_type, cv_id, cv_num):
+        data_preds = dict()
+        if indexs:
+            data_preds['index'] = indexs
+        data_preds['label_id_pred'] = preds
+
+        file_name = '{}/{}_{}_{}.{}.preds'.format(self.run_path,
+                                                  model_name,
+                                                  cv_id,
+                                                  cv_num,
+                                                  data_type)
+        write_csv(file_name, data_preds)
+
     def run_offline(self, cv_id=-1, cv_num=-1):
         if cv_id != self.params['cv_id']:
             logging.info('Reset cv_id={}, previous cv_id={}'.format(cv_id, self.params['cv_id']))
@@ -81,15 +94,15 @@ class SingleRun(Runner):
         valid_labels, valid_f_vecs = self.generate_data(valid_indexs, labels, f_vecs)
 
         # model
-        model = Model.new(self.conf)
-        valid_preds = model.fit({'train_labels': train_labels,
-                                 'train_f_vecs': train_f_vecs,
-                                 'valid_labels': valid_labels,
-                                 'valid_f_vecs': valid_f_vecs},
-                                cv_id,
-                                cv_num)
-        self.save_valid_preds(valid_indexs, valid_preds, model.get_config_field_name(), cv_id, cv_num)
-        model.save('{}/{}_{}_{}.model'.format(self.run_path, model.get_config_field_name(), cv_id, cv_num))
+        self.model = Model.new(self.conf)
+        valid_preds = self.model.fit({'train_labels': train_labels,
+                                      'train_f_vecs': train_f_vecs,
+                                      'valid_labels': valid_labels,
+                                      'valid_f_vecs': valid_f_vecs},
+                                     cv_id,
+                                     cv_num)
+        self.save_preds(valid_indexs, valid_preds, self.model.get_config_field_name(), 'valid', cv_id, cv_num)
+        self.model.save('{}/{}_{}_{}.model'.format(self.run_path, self.model.get_config_field_name(), cv_id, cv_num))
 
         # evaluation
         score = ave_f1(valid_labels, valid_preds, 4, False)
@@ -100,5 +113,18 @@ class SingleRun(Runner):
         # save config
         self.save_conf()
 
+    def run_online(self):
+        cv_id = self.params['cv_id']
+        cv_num = self.params['cv_num']
+        # load feature
+        f_vecs = load_all(self.conf.get('PATH', 'feature'),
+                          self.conf.get(self.get_config_section_name(), 'feature').split(),
+                          'test',
+                          False)
+        # predict
+        preds = self.model.predict(f_vecs, cv_id, cv_num)
+        self.save_preds(None, preds, self.model.get_config_field_name(), 'test', cv_id, cv_num)
+
     def run(self):
         self.run_offline(self.params['cv_id'], self.params['cv_num'])
+        self.run_online()

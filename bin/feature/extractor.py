@@ -116,7 +116,7 @@ class Extractor(Base):
                             data_type='train',
                             bandwidth=0.5):
         import matplotlib.pyplot as plt
-        
+
         data = self.load_draw_data(f_id=f_id, data_name=data_name, data_type=data_type)
 
         bins = np.linspace(x_min, x_max, bin_num)[:, np.newaxis]

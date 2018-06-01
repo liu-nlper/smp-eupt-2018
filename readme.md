@@ -161,4 +161,4 @@ python -m bin.go --package bin.experiment.cv --object CrossValidation
 | v004      | v003          | ------    | 0.89415       | add chinese_char_ratio                    |
 | v003      | v002          | ------    | 0.85627       | add word_set_num                          |
 | v002      | v001          | ------    | 0.81059       | add word_num                              |
-| v001      | v000          | ------    | 0.80358       | add content_length                        |
+| v001      | v000          | 0.80315    | 0.80358       | add content_length                        |

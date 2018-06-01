@@ -37,6 +37,14 @@ class XGB(Model):
                       str(json.dumps(self.params, indent=4)))
         return valid_preds
 
+    def predict(self, f_vecs, cv_id, cv_num, labels=None):
+        logging.info('[best_ntree_limit_{}_{}={}]'.format(cv_id,
+                                                          cv_num,
+                                                          self.params['best_ntree_limit_{}_{}'.format(cv_id, cv_num)]))
+        preds = self.model.predict(xgb.DMatrix(f_vecs, label=labels),
+                                   ntree_limit=self.params['best_ntree_limit_{}_{}'.format(cv_id, cv_num)])
+        return preds
+
     def save(self, file_path):
         self.model.save_model(file_path)
 

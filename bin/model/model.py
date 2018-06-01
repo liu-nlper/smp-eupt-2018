@@ -41,5 +41,5 @@ class Model(Base):
     def load(self, file_path):
         assert False, 'Please override function: Model.load'
 
-    def predict(self, f_vecs, labels=None):
+    def predict(self, f_vecs, cv_id, cv_num, labels=None):
         assert False, 'Please override function: Model.predict'
