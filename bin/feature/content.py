@@ -65,7 +65,8 @@ class WordSetNum(Extractor):
         return [len(words)]
 
     def run(self):
-        self.extract(data_name='jieba_cutter')
+        self.extract(data_name='jieba_cutter', data_type='train')
+        self.extract(data_name='jieba_cutter', data_type='test')
 
     def visual(self):
         self.draw_hist(x_max=600)
