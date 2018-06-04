@@ -30,5 +30,5 @@ class Base(object):
     def get_config_field_name(self):
         return title2underline(self.__class__.__name__)
 
-    def get_date_name(self):
+    def get_data_name(self):
         return title2underline(self.__class__.__name__)

@@ -19,6 +19,11 @@ flags.DEFINE_string('object', 'HelloWorld', 'specify the class name to be run')
 flags.DEFINE_string('func', 'run', 'specify the function name to be run')
 flags.DEFINE_string('conf', 'conf/template.conf', 'specify the path of config file')
 
+# For feature word document frequency
+flags.DEFINE_string('unit', 'word', 'specify the unit for word document frequency, e.g. word/2gram/3gram/...')
+flags.DEFINE_string('enable_set', 'true', 'specify whether enable set for words')
+flags.DEFINE_integer('min_doc_frequency', 50, 'specify the minimum document frequency')
+
 
 def main(_):
     conf = configparser.ConfigParser()

@@ -25,7 +25,7 @@ class NGramDF(Counter):
     def get_config_field_name(self):
         return 'n_gram_df'
 
-    def get_date_name(self):
+    def get_data_name(self):
         return '{}_n{}_mdf{}'.format(self.get_config_field_name(),
                                      self.params['n'],
                                      self.params['min_doc_frequency'])
