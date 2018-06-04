@@ -7,7 +7,6 @@
 import csv
 from absl import logging
 import numpy as np
-from sklearn.neighbors import KernelDensity
 from bin.featwheel.feature import save_vector, load
 from bin.featwheel.base import Base
 from bin.featwheel.io import read_csv
@@ -116,6 +115,7 @@ class Extractor(Base):
                             data_type='train',
                             bandwidth=0.5):
         import matplotlib.pyplot as plt
+        from sklearn.neighbors import KernelDensity
 
         data = self.load_draw_data(f_id=f_id, data_name=data_name, data_type=data_type)
 
