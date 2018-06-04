@@ -55,9 +55,6 @@ class WordDFBase(Extractor):
     def get_config_section_name():
         return 'EXTRACTOR'
 
-    def get_feature_size(self):
-        return 1
-
     def load_pre_data(self):
         word_df = read_csv('{}/{}_df_{}.train.csv'.format(self.conf.get('PATH', 'raw'),
                                                           FLAGS.unit,
@@ -116,6 +113,9 @@ class WordDFEntropySum(WordDFBase):
     def __init__(self, conf):
         WordDFBase.__init__(self, conf)
 
+    def get_feature_size(self):
+        return 1
+
     def get_config_field_name(self):
         return 'word_df_entropy_sum'
 
@@ -136,6 +136,9 @@ class WordDFEntropySum(WordDFBase):
 class WordDFEntropyAverage(WordDFBase):
     def __init__(self, conf):
         WordDFBase.__init__(self, conf)
+
+    def get_feature_size(self):
+        return 1
 
     def get_config_field_name(self):
         return 'word_df_entropy_average'
@@ -158,6 +161,9 @@ class WordDFProbabilitySum(WordDFBase):
     def __init__(self, conf):
         WordDFBase.__init__(self, conf)
 
+    def get_feature_size(self):
+        return 4
+
     def get_config_field_name(self):
         return 'word_df_probability_sum'
 
@@ -179,6 +185,9 @@ class WordDFProbabilityAve(WordDFBase):
     def __init__(self, conf):
         WordDFBase.__init__(self, conf)
 
+    def get_feature_size(self):
+        return 4
+
     def get_config_field_name(self):
         return 'word_df_probability_ave'
 
@@ -199,6 +208,9 @@ class WordDFProbabilityAve(WordDFBase):
 class WordDFProbabilityNorm(WordDFBase):
     def __init__(self, conf):
         WordDFBase.__init__(self, conf)
+
+    def get_feature_size(self):
+        return 4
 
     def get_config_field_name(self):
         return 'word_df_probability_norm'
@@ -224,6 +236,9 @@ class WordDFProbabilitySumSum(WordDFBase):
     def __init__(self, conf):
         WordDFBase.__init__(self, conf)
 
+    def get_feature_size(self):
+        return 1
+
     def get_config_field_name(self):
         return 'word_df_probability_sum_sum'
 
@@ -244,6 +259,9 @@ class WordDFProbabilitySumSum(WordDFBase):
 class WordDFProbabilityAveSum(WordDFBase):
     def __init__(self, conf):
         WordDFBase.__init__(self, conf)
+
+    def get_feature_size(self):
+        return 1
 
     def get_config_field_name(self):
         return 'word_df_probability_ave_sum'
